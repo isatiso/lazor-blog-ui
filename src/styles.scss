@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './assets/scss/bootstrap-fix.scss';
+@import './assets/scss/material_theming.scss';
+@import './assets/scss/highlight.scss';
+@import './assets/scss/markdown.scss';
+@import './assets/scss/google-font.scss';
+html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-size: 16px;
+    body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        button {
+            outline: none!important;
+        }
+    }
+}
+
+.my-nav {
+    background-color: map-get($primary, 600);
+    padding: 0.8rem 1rem!important;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.my-divider {
+    height: 2rem;
+}
+
+.my-nav-placeholder {
+    height: calc(36px + 3.6rem);
+}
+
+.title {
+    font-family: $font-title;
+    font-size: 3rem;
+    // padding-bottom: 20px;
+}
+
+.nav-button {
+    font-family: $font-banner;
+    font-size: 1.5rem;
+    color: #fff;
+    mat-icon {
+        position: relative;
+        top: 0.24rem;
+    }
+}
+
+.nav-logo {
+    font-weight: bolder;
+    font-style: italic;
+}
