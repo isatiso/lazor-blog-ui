@@ -1,0 +1,14 @@
+@import '../../../assets/scss/material_theming.scss';
+.banner {
+    // background-repeat: repeat;
+    background-image: url(/assets/image/pw_maze_white.png);
+    background-position-x: -12rem;
+    // background-size: 95%;
+    background-color: map-get($primary, 400); 
+    background-blend-mode: color-burn;
+    color: white;
+    h1 {
+        outline: none;
+        font-family: $font-banner;
+    }
+}
