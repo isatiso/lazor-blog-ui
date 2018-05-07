@@ -12,58 +12,34 @@ import { AboutComponent } from 'pages/main-page/about/about.component';
 
 const routes: Routes = [
     {
-        path: 'home',
+        path: '',
         component: MainPageComponent,
         children: [
+            { path: '', component: NavbarComponent, outlet: 'navbar' },
+            { path: '', component: FooterComponent, outlet: 'footer' },
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
             {
-                path: '', component: HomeComponent, outlet: 'main',
+                path: 'home', component: HomeComponent,
+                // children: [
+                //     { path: '', component: FooterComponent, outlet: 'footer' }
+                // ]
+            },
+            {
+                path: 'article', component: ArticleComponent,
                 children: [
-                    { path: '', component: FooterComponent, outlet: 'footer' }
+                    { path: '', component: ContentComponent, outlet: 'content' },
+
                 ]
             },
-            { path: '', component: NavbarComponent, outlet: 'navbar' },
+            {
+                path: 'about', component: AboutComponent,
+                children: [
+                    { path: '', component: ContentComponent, outlet: 'content' },
+                ]
+            },
+
         ]
     },
-    // {
-    //     path: 'home',
-    //     component: MainPageComponent,
-    //     children: [
-    //         { path: '', component: NavbarComponent, outlet: 'navbar' },
-    //         {
-    //             path: '', component: HomeComponent, outlet: 'main',
-    //             children: [
-    //                 { path: '', component: FooterComponent, outlet: 'footer' }
-    //             ]
-    //         },
-    //     ]
-    // },
-    // {
-    //     path: 'article',
-    //     component: MainPageComponent,
-    //     children: [
-    //         { path: '', component: NavbarComponent, outlet: 'navbar' },
-    //         {
-    //             path: '', component: ArticleComponent, outlet: 'main', children: [
-    //                 { path: '', component: ContentComponent, outlet: 'content' },
-    //                 { path: '', component: FooterComponent, outlet: 'footer' }
-    //             ]
-    //         },
-    //     ]
-    // },
-    // {
-    //     path: 'about',
-    //     component: MainPageComponent,
-    //     children: [
-    //         { path: '', component: NavbarComponent, outlet: 'navbar' },
-    //         {
-    //             path: '', component: AboutComponent, outlet: 'main',
-    //             children: [
-    //                 { path: '', component: ContentComponent, outlet: 'content' },
-    //                 { path: '', component: FooterComponent, outlet: 'footer' }
-    //             ]
-    //         },
-    //     ]
-    // },
 ];
 
 @NgModule({

@@ -7,6 +7,8 @@ import { MatMenuModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainPageModule } from 'pages/main-page/main-page.module';
+import { NavbarModule } from 'components/navbar/navbar.module';
 
 @NgModule({
     declarations: [
@@ -16,6 +18,8 @@ import { AppComponent } from './app.component';
         BrowserModule,
         BrowserAnimationsModule,
         MatMenuModule,
+        MainPageModule,
+        NavbarModule,
         AppRoutingModule
     ],
     providers: [],

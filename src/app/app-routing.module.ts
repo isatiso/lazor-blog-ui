@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MainPageComponent } from 'pages/main-page/main-page.component';
+import { NavbarComponent } from 'components/navbar/navbar.component';
 
 const routes: Routes = [
     {
@@ -9,17 +11,18 @@ const routes: Routes = [
     },
     {
         path: 'main',
+        component: MainPageComponent,
         loadChildren: './pages/main-page/main-page.module#MainPageModule',
     },
     {
         path: '',
-        redirectTo: 'main/home',
+        redirectTo: 'main',
         pathMatch: 'full',
     },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, {enableTracing: true})],
+    imports: [RouterModule.forRoot(routes, { enableTracing: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
