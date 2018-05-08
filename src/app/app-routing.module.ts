@@ -6,23 +6,23 @@ import { NavbarComponent } from 'components/navbar/navbar.component';
 const routes: Routes = [
     {
         path: 'index',
-        loadChildren: './pages/index/index.module#IndexModule',
+        loadChildren: 'pages/index/index.module#IndexModule',
         pathMatch: 'full',
     },
     {
         path: 'main',
         component: MainPageComponent,
-        loadChildren: './pages/main-page/main-page.module#MainPageModule',
+        loadChildren: 'pages/main-page/main-page.module#MainPageModule',
     },
     {
         path: '',
-        redirectTo: 'main',
+        redirectTo: '/index',
         pathMatch: 'full',
     },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { enableTracing: true })],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

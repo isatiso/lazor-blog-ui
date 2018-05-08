@@ -9,25 +9,27 @@ import { FooterComponent } from 'components/footer/footer.component';
 import { HomeComponent } from 'pages/main-page/home/home.component';
 import { ArticleComponent } from 'pages/main-page/article/article.component';
 import { AboutComponent } from 'pages/main-page/about/about.component';
+import { AuthComponent } from 'app/pages/main-page/auth/auth.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'main',
         component: MainPageComponent,
         children: [
             { path: '', component: NavbarComponent, outlet: 'navbar' },
-            { path: '', component: FooterComponent, outlet: 'footer' },
+            // { path: '', component: FooterComponent, outlet: 'footer' },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             {
                 path: 'home', component: HomeComponent,
-                // children: [
-                //     { path: '', component: FooterComponent, outlet: 'footer' }
-                // ]
+            },
+            {
+                path: 'auth', component: AuthComponent,
             },
             {
                 path: 'article', component: ArticleComponent,
                 children: [
                     { path: '', component: ContentComponent, outlet: 'content' },
+                    { path: '', component: FooterComponent, outlet: 'footer' },
 
                 ]
             },
@@ -35,9 +37,9 @@ const routes: Routes = [
                 path: 'about', component: AboutComponent,
                 children: [
                     { path: '', component: ContentComponent, outlet: 'content' },
+                    { path: '', component: FooterComponent, outlet: 'footer' },
                 ]
             },
-
         ]
     },
 ];

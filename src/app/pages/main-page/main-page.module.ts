@@ -8,8 +8,9 @@ import { NavbarModule } from 'components/navbar/navbar.module';
 import { ContentModule } from 'components/content/content.module';
 import { FooterModule } from 'components/footer/footer.module';
 import { HomeModule } from 'pages/main-page/home/home.module';
-import { ArticleModule } from 'app/pages/main-page/article/article.module';
-import { AboutModule } from 'app/pages/main-page/about/about.module';
+import { ArticleModule } from 'pages/main-page/article/article.module';
+import { AboutModule } from 'pages/main-page/about/about.module';
+import { AuthModule } from 'pages/main-page/auth/auth.module';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { AboutModule } from 'app/pages/main-page/about/about.module';
         HomeModule,
         ArticleModule,
         AboutModule,
+        AuthModule,
         NavbarModule,
         ContentModule,
         FooterModule

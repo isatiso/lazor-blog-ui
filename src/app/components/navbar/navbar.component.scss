@@ -1,6 +1,17 @@
+@import '../../../assets/scss/material_theming.scss';
 .site-logo {
     width: 30px;
-    height: 30px;
-    // position: relative;
-    // top: -3px;
+    height: 30px; 
+}
+
+.my-nav {
+    background-image: url(/assets/image/pw_maze_white.png);
+    background-color: map-get($primary, 400);
+    background-blend-mode: color-burn;
+    padding: 0.8rem 1rem !important;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+.my-nav-placeholder {
+    height: 5.8rem;
 }

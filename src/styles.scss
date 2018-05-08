@@ -16,32 +16,20 @@ html {
         width: 100%;
         background-color: #f0f0f0;
         button {
-            outline: none!important;
+            outline: none !important;
+        }
+        .container:first-child{
+            height: 100%;
         }
     }
-}
-
-.my-nav {
-    background-image: url(/assets/image/pw_maze_white.png);
-    background-position-x: -12rem;
-    // background-size: 95%;
-    background-color: map-get($primary, 400); 
-    background-blend-mode: color-burn;
-    padding: 0.8rem 1rem!important;
-    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
 .my-divider {
     height: 3rem;
 }
 
-.my-nav-placeholder {
-    height: calc(36px + 3.6rem);
-}
-
 .title {
-    font-family: $font-title;
-    font-size: 3rem;
+    font-family: $font-title; // font-size: 3rem;
     // padding-bottom: 20px;
 }
 

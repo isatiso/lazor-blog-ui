@@ -35,13 +35,53 @@
         </div>
     </div>
 
-    <div class="row my-divider"> </div>
-    <div class="row ">
-        <div class="col-lg-12 text-center">
-            <button mat-raised-button color="primary" routerLink="/main/home">
-                Get Started
+    <div class="row my-divider"></div>
+    <div class="row align-items-center">
+        <div class="col-lg-7">
+            <h2>为什么这么慢？</h2>
+            <br>
+            <p class="lead">因为服务器是一个 1 核 1 G 1 M 的超低配置腾讯云（怎么全是 1 (ಠ╭╮ಠ) ），所以。。。如果大家愿意赞助我的话，我是很愿意升级配置的 ヽ(•ω•ゞ)</p>
+        </div>
+        <mat-card class="col-lg-5">
+            <img class="only-image img-fluid" src="assets/image/muji1.jpg" alt="" />
+        </mat-card>
+    </div>
+    <div class="row my-divider"></div>
+</div>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-lg-5">
+
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>User Name</mat-label>
+                <input matInput [(ngModel)]="newname">
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="newemail">
+            </mat-form-field>
+
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput [(ngModel)]="newpassword" type="password" />
+            </mat-form-field>
+
+            <button mat-raised-button class="w-100" color="primary" (click)="sign_up($event)">
+                现在注册
             </button>
         </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-6 text-center">
+            <div class="lead">
+                或者 &nbsp;&nbsp;
+                <button mat-raised-button class="w-75" routerLink="/main/auth">
+                    立即登录
+                </button>
+            </div>
+        </div>
     </div>
+
+
 </div>
 <router-outlet name="footer"></router-outlet>
