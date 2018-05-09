@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'la-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.scss']
+    selector: 'la-index',
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+    name = '';
+    email = '';
+    password = '';
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    sign_up(event) {
+        console.log(event);
+    }
 }

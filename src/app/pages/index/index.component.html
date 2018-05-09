@@ -54,17 +54,17 @@
 
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label>User Name</mat-label>
-                <input matInput [(ngModel)]="newname">
+                <input matInput [(ngModel)]="name">
             </mat-form-field>
 
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput [(ngModel)]="newemail">
+                <input matInput [(ngModel)]="email">
             </mat-form-field>
 
             <mat-form-field class="w-100" appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput [(ngModel)]="newpassword" type="password" />
+                <input matInput [(ngModel)]="password" type="password" />
             </mat-form-field>
 
             <button mat-raised-button class="w-100" color="primary" (click)="sign_up($event)">

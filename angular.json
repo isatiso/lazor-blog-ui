@@ -53,7 +53,10 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "lazor-blog-ui:build"
+                        "browserTarget": "lazor-blog-ui:build",
+                        "host": "localhost",
+                        "port": 9469,
+                        "liveReload": true
                     },
                     "configurations": {
                         "production": {
