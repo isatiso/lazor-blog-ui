@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ContentService } from 'services/content.service';
 
 @Component({
@@ -7,17 +7,22 @@ import { ContentService } from 'services/content.service';
     styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
-    title = '标题';
+    title = '';
     content = '';
     constructor(
         private _content: ContentService
     ) { }
 
+    @ViewChild('topSpacer') top_spacer;
+
     ngOnInit() {
-        console.log(this._content.content);
+        this.top_spacer.nativeElement.style.height = '3rem';
+
         this._content.content.subscribe(value => {
             this.content = value;
-            console.log(value);
+        });
+        this._content.title.subscribe(value => {
+            this.title = value;
         });
     }
 

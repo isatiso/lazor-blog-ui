@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'la-home',
@@ -9,7 +9,10 @@ export class HomeComponent implements OnInit {
 
     constructor() { }
 
+    @ViewChild('topSpacer') top_spacer;
+
     ngOnInit() {
+        this.top_spacer.nativeElement.style.height = '3rem';
     }
 
 }

@@ -943,24 +943,20 @@ class Renderer {
     }
 
     translate_lang(lang: string) {
-        switch (lang.toLowerCase()) {
-            case 'javascript':
-                return 'JavaScript';
-            case 'python':
-                return 'Python';
-            case 'html':
-                return 'HTML';
-            case 'sql':
-                return 'SQL';
-            case 'mongodb':
-                return 'MongoDB';
-            case 'css':
-                return 'CSS';
-            case 'plaintext':
-                return 'Plain Text';
-            default:
-                return lang;
-        }
+        lang = lang.toLowerCase();
+
+        const reflect_table = {
+            javascript: 'JavaScript',
+            python: 'Python',
+            html: 'HTML',
+            sql: 'SQL',
+            mongodb: 'MongoDB',
+            css: 'CSS',
+            plaintext: 'Plain Text',
+        };
+
+        const result = reflect_table[lang];
+        return result || lang;
     }
 
     code(code, lang, escaped) {
@@ -975,13 +971,12 @@ class Renderer {
 
         lang = this.translate_lang(lang);
 
-        return `<div class="code-block"><pre><div class="outline">${escape(lang, true)}</div>` +
-            `<code>${(escaped ? code : escape(code, true))}\n</code></pre></div>\n`;
-        // class="${this.options.langPrefix}${escape(lang, true)}"
+        return `<pre><div class="outline">${escape(lang, true)}</div>` +
+            `<code>${(escaped ? code : escape(code, true))}\n</code></pre>\n`;
     }
 
     blockquote(quote) {
-        return '<blockquote>\n' + quote + '</blockquote>\n';
+        return '<blockquote>' + quote + '</blockquote>';
     }
 
     html(html) {
@@ -989,16 +984,11 @@ class Renderer {
     }
 
     heading(text, level, raw) {
-        return '<div class="head-' + level + '"><h' +
-            level +
-            ' id="' +
-            this.options.headerPrefix +
-            raw.toLowerCase().replace(/[^\w]+/g, '-') +
-            '">' +
-            text +
-            '</h' +
-            level +
-            '></div>\n';
+        // const header_prefix = this.options.headerPrefix;
+        // const header_name = raw.toLowerCase().replace(/[^\w]+/g, '-');
+        const first_line = `<h${level}>`;
+        const last_line = `</h${level}>`;
+        return first_line + text + last_line;
     }
 
     hr() {
@@ -1007,12 +997,11 @@ class Renderer {
 
     list(body, ordered) {
         const type = ordered ? 'ol' : 'ul';
-        const class_name = ordered ? 'circle-list' : 'rect-list';
-        return `<div class="${class_name}"><${type}>\n${body}</${type}></div>\n`;
+        return `<${type}>${body}</${type}>`;
     }
 
     listitem(text, list_level) {
-        return `<li class="list-level-${list_level}">${text}</li>\n`;
+        return `<li>${text}</li>`;
     }
 
     paragraph(text) {
@@ -1044,15 +1033,15 @@ class Renderer {
 
     // span level renderer
     strong(text) {
-        return '<span class="md-strong">' + text + '</span>';
+        return '<strong>' + text + '</strong>';
     }
 
     em(text) {
-        return '<span class="md-italic">' + text + '</span>';
+        return '<i>' + text + '</i>';
     }
 
     codespan(text) {
-        return '<code class="inline-code">' + text + '</code>';
+        return '<code>' + text + '</code>';
     }
 
     br() {
@@ -1081,9 +1070,7 @@ class Renderer {
     }
 
     image(href, title, text) {
-        return `<div class="md-image">` +
-            `<img src="${href}" onclick="window.current_image='${href}'" alt="${text}" ${title && `title="${title}"` || ''}/>` +
-            `</div>`;
+        return `<img src="${href}" onclick="window.current_image='${href}'" alt="${text}" ${title && `title="${title}"` || ''}/>`;
     }
 
     text(text) {

@@ -14,18 +14,18 @@ export class ArticleComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this._content.title.next('article');
+        this._content.title.next('Article');
         this._content.content.next(
             `
-## article works!
-## article works!
-## article works!
-## article works!
-## article works!
-## article works!
-## article works!
-## article works!
-## article works!`
+# article works!
+# article works!
+# article works!
+# article works!
+# article works!
+# article works!
+# article works!
+# article works!
+# article works!`
         );
     }
 

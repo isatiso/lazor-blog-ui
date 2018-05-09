@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ContentService } from 'services/content.service';
+import { AboutContent } from './about.md';
 
 @Component({
     selector: 'la-about',
@@ -9,25 +10,16 @@ import { ContentService } from 'services/content.service';
 })
 export class AboutComponent implements OnInit {
 
+    about_content = new AboutContent();
+
     constructor(
         private _content: ContentService
     ) { }
 
     ngOnInit() {
         console.log('about');
-        this._content.title.next('about');
-        this._content.content.next(
-            `
-## about works!
-## about works!
-## about works!
-## about works!
-## about works!
-## about works!
-## about works!
-## about works!
-## about works!`
-        );
+        this._content.title.next('关于 Lazor Blog');
+        this._content.content.next(this.about_content.content);
     }
 
 }

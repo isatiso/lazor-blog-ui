@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'la-navbar',
@@ -15,7 +15,11 @@ export class NavbarComponent implements OnInit {
 
     constructor() { }
 
+    @ViewChild('navbar') navbar;
+    @ViewChild('navbarSpacer') navbar_spacer;
+
     ngOnInit() {
+        this.navbar_spacer.nativeElement.style.height = this.navbar.nativeElement.offsetHeight + 'px';
     }
 
 }
