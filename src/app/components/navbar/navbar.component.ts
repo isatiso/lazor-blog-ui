@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AccountService } from 'app/services/account.service';
 
 @Component({
     selector: 'la-navbar',
@@ -7,13 +8,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-    title = 'la';
-
     get outer_width(): number {
         return window.outerWidth;
     }
 
-    constructor() { }
+    constructor(
+        private _account: AccountService
+    ) { }
 
     @ViewChild('navbar') navbar;
     @ViewChild('navbarSpacer') navbar_spacer;
@@ -22,4 +23,11 @@ export class NavbarComponent implements OnInit {
         this.navbar_spacer.nativeElement.style.height = this.navbar.nativeElement.offsetHeight + 'px';
     }
 
+    get current_user() {
+        return this._account.current_user.value;
+    }
+
+    log_out() {
+        this._account.log_out();
+    }
 }

@@ -10,12 +10,12 @@
                     <div class="col-lg-6">
                         <mat-form-field class="sign-in" appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input matInput [(ngModel)]="name">
+                            <input matInput [(ngModel)]="sign_in_data.name">
                         </mat-form-field>
 
                         <mat-form-field class="sign-in" appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input matInput [(ngModel)]="password" type="password" />
+                            <input matInput [(ngModel)]="sign_in_data.password" type="password" />
                         </mat-form-field>
 
                         <button mat-raised-button color="primary" class="w-100" (click)="sign_in($event)">开始浏览</button>

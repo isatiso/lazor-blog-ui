@@ -6,11 +6,10 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root'
 })
 export class ContentService {
-    title: BehaviorSubject<string>;
-    content: BehaviorSubject<string>;
+    title = new BehaviorSubject<string>('');
+    content = new BehaviorSubject<string>('');
 
     constructor() {
-        this.title = new BehaviorSubject<string>('');
-        this.content = new BehaviorSubject<string>('');
+
     }
 }

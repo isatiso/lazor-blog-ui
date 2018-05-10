@@ -10,6 +10,7 @@ import { HomeComponent } from 'pages/main-page/home/home.component';
 import { ArticleComponent } from 'pages/main-page/article/article.component';
 import { AboutComponent } from 'pages/main-page/about/about.component';
 import { AuthComponent } from 'app/pages/main-page/auth/auth.component';
+import { AuthGuard } from 'app/guards/auth.guard';
 
 const routes: Routes = [
     {
@@ -17,20 +18,19 @@ const routes: Routes = [
         component: MainPageComponent,
         children: [
             { path: '', component: NavbarComponent, outlet: 'navbar' },
-            // { path: '', component: FooterComponent, outlet: 'footer' },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             {
                 path: 'home', component: HomeComponent,
+                canActivate: [AuthGuard],
             },
             {
                 path: 'auth', component: AuthComponent,
             },
             {
-                path: 'article', component: ArticleComponent,
+                path: 'article/:id', component: ArticleComponent,
                 children: [
                     { path: '', component: ContentComponent, outlet: 'content' },
                     { path: '', component: FooterComponent, outlet: 'footer' },
-
                 ]
             },
             {

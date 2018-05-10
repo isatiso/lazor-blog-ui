@@ -41,7 +41,7 @@ export class Category {
     category_name?: string;
     category_type?: number;
     category_order?: number;
-    show_options?: number;
+    show_options?: string;
     user_id?: string;
 
     constructor(category?: object) {
@@ -49,7 +49,7 @@ export class Category {
         this.category_name = category['category_name'] || '';
         this.category_type = category['category_type'] || 0;
         this.category_order = category['category_order'] || 0;
-        this.show_options = category['show_options'] || 0;
+        this.show_options = 'none';
         this.user_id = category['user_id'] || '';
     }
 }

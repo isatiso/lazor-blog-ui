@@ -1,5 +1,5 @@
 import { Directive, ElementRef, OnInit, Input } from '@angular/core';
-import { MarkdownService } from 'services/markdown.service';
+import { MarkdownService } from 'services/components/markdown.service';
 
 @Directive({
     selector: 'markdown, [laMarkdown]'

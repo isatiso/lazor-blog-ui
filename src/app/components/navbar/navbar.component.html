@@ -13,7 +13,7 @@
         <button mat-button *ngIf="outer_width > 768" routerLink="/main/home">
             <span class="nav-button nav-item">主页</span>
         </button>
-        <button mat-button *ngIf="outer_width > 768" routerLink="/main/article">
+        <button mat-button *ngIf="outer_width > 768" routerLink="/main/article/3313b082-deeb-11e7-8b88-525400196113">
             <span class="nav-button nav-item">文章</span>
         </button>
         <button mat-button *ngIf="outer_width > 768" routerLink="/main/about">
@@ -23,13 +23,16 @@
     <div class="collapse navbar-collapse"></div>
     <div class="navbar-nav">
         <button mat-button [matMenuTriggerFor]="menu">
-            <span class="nav-button nav-item">未登录
+            <span class="nav-button nav-item">{{ current_user ? current_user.user_name : '未登录' }}
                 <mat-icon>account_box</mat-icon>
             </span>
         </button>
         <mat-menu #menu="matMenu" xPosition="before" class="nav-menu">
             <button mat-menu-item routerLink="/main/auth" class="nav-menu">
                 <span>登录</span>
+            </button>
+            <button mat-menu-item (click)="log_out()" class="nav-menu">
+                <span>安全退出</span>
             </button>
         </mat-menu>
     </div>

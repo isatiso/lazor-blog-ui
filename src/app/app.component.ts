@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
+import { AccountService } from 'app/services/account.service';
+
 declare var anime: any;
 
 @Component({
@@ -14,7 +16,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         return window.outerWidth;
     }
 
+    constructor(
+        private _account: AccountService
+    ) { }
+
     ngOnInit() {
+        this._account.update_user_info();
         anime.timeline({
             targets: ['#loading-wrapper', '#cover-background'],
             opacity: 0,
@@ -26,6 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
             zIndex: -1,
         });
     }
+
     ngAfterViewInit() {
         const logo_anime_handler = anime({
             targets: '#site-logo',
@@ -38,6 +46,5 @@ export class AppComponent implements OnInit, AfterViewInit {
             ],
             loop: true
         });
-
     }
 }

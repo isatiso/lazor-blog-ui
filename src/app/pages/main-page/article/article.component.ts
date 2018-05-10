@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
-import { ContentService } from 'services/content.service';
+import { ContentService } from 'services/components/content.service';
+import { ArticleDataService } from 'services/database/article-data.service';
+
 
 @Component({
     selector: 'la-article',
@@ -8,25 +11,20 @@ import { ContentService } from 'services/content.service';
     styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-
+    current = '';
     constructor(
-        private _content: ContentService
+        private _content: ContentService,
+        private _article_data: ArticleDataService,
+        private _route: ActivatedRoute
     ) { }
 
     ngOnInit() {
-        this._content.title.next('Article');
-        this._content.content.next(
-            `
-# article works!
-# article works!
-# article works!
-# article works!
-# article works!
-# article works!
-# article works!
-# article works!
-# article works!`
-        );
+        this.current = this._route.params['value']['id'];
+        this._article_data.get_article(this.current).subscribe(
+            value => {
+                this._content.title.next(value.title);
+                this._content.content.next(value.content);
+            });
     }
 
 }

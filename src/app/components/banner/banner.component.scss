@@ -17,6 +17,7 @@
 
 .welcome {
     cursor: pointer;
+    transform: rotate(5deg);
 }
 
 .welcome-height {
@@ -33,6 +34,6 @@
     transition: ease-in-out;
     transition-duration: 200ms;
     &:hover {
-        transform: scale(1.05);
+        transform: scale(1.05) rotate(5deg);
     }
 }

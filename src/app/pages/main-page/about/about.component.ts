@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ContentService } from 'services/content.service';
+import { ContentService } from 'services/components/content.service';
 import { AboutContent } from './about.md';
 
 @Component({
