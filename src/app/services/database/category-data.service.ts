@@ -32,6 +32,16 @@ export class CategoryDataService {
         return list;
     }
 
+    set_current(category: Category) {
+        for (const item of this.list.value) {
+            if (item.category_id === category.category_id) {
+                item.show_options = 'current';
+                break;
+            }
+        }
+        this.current.next(category);
+    }
+
     is_current(category) {
         if (this.current.value) {
             if (this.current.value.category_id === category.category_id) {
@@ -44,6 +54,7 @@ export class CategoryDataService {
     get_categories(options?: Options) {
         options = options || new Options({});
         const cache_info = this._storage.sread('category_list');
+        console.log(this.current.value);
 
         if (options.flush || !cache_info) {
             this._http.get(this._api.category()).subscribe(
@@ -51,11 +62,15 @@ export class CategoryDataService {
                     if (res['data']) {
                         let data = this._assemble_data(
                             res['data']['category_list'], res['data']['order_list'], 'category_id');
-
                         data = data.map(item => new Category(item));
                         this._storage.swrite('category_list', JSON.stringify(data));
                         this.list.next(data);
-                        this.get_articles(data[0]);
+                        if (this.current.value) {
+                            this.get_articles(this.current.value);
+                        } else {
+                            this.set_current(data[0]);
+                            this.get_articles(data[0]);
+                        }
                     }
                 },
                 error => {
@@ -64,13 +79,17 @@ export class CategoryDataService {
             );
         } else {
             this.list.next(JSON.parse(cache_info));
-            this.current.next(JSON.parse(cache_info)[0]);
+            if (this.current.value) {
+                this.get_articles(this.current.value);
+            } else {
+                this.set_current(JSON.parse(cache_info)[0]);
+                this.get_articles(JSON.parse(cache_info)[0]);
+            }
         }
-        console.log(this.list.value);
     }
 
     get_articles(category?: Category) {
-        this.current.next(category);
+        this.set_current(category);
         this._http.get(this._api.article_list(), { params: { category_id: category.category_id } }).subscribe(
             res => {
                 const data = this._assemble_data(

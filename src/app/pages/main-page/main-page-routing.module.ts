@@ -11,6 +11,7 @@ import { ArticleComponent } from 'pages/main-page/article/article.component';
 import { AboutComponent } from 'pages/main-page/about/about.component';
 import { AuthComponent } from 'app/pages/main-page/auth/auth.component';
 import { AuthGuard } from 'app/guards/auth.guard';
+import { ButlerComponent } from 'app/components/butler/butler.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
             {
                 path: 'home', component: HomeComponent,
                 canActivate: [AuthGuard],
+                children: [
+                    { path: '', component: ButlerComponent, outlet: 'butler' },
+                    { path: '', component: FooterComponent, outlet: 'footer' },
+                ]
             },
             {
                 path: 'auth', component: AuthComponent,

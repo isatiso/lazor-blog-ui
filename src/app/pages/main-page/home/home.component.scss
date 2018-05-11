@@ -1,12 +1,12 @@
 @import '../../../../assets/scss/material_theming.scss';
-ul {
+ul.category-list {
     list-style: none;
     padding: 2rem;
     padding-left: 0rem;
     padding-right: 0rem;
     margin: 0;
     li {
-        height: 4rem;
+        height: 3.5rem;
         margin-top: 0.2rem;
         position: relative;
         .mat-card {
@@ -27,12 +27,12 @@ ul {
             border-radius: 5px;
             background-color: map-get($mat-grey, 300);
             box-shadow: inset -1px -1px 10px rgba(0, 0, 0, 0.30);
-            height: 4rem;
+            height: 3.5rem;
             position: absolute;
             top: 0;
             .button-container {
                 .helper {
-                    height: 4rem;
+                    height: 3.5rem;
                     display: inline-block;
                     vertical-align: middle;
                 }
@@ -43,6 +43,56 @@ ul {
                     vertical-align: middle;
                 }
             }
+        }
+    }
+}
+
+.article-title {
+    width: 100%;
+    height: 3.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.54);
+    line-height: 3.5rem;
+    padding-left: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+ul.article-list {
+    background-color: #ddd;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.54);
+    li.article-item {
+        background-color: #ffffff;
+        width: 100%;
+        height: 3.5rem;
+        padding-left: 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        .helper {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+        button.article-name {
+            display: inline-block;
+            vertical-align: middle;
+            height: 2.5rem;
+            border-radius: 1.25rem;
+            border-width: 0;
+            align-items: center;
+            padding: 0rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            background-color: map-get($primary, 400);
+            color: white;
+            font-weight: 300;
+            font-size: 1rem; 
+            opacity: 0;
+            transform: translateX(-6rem);
         }
     }
 }

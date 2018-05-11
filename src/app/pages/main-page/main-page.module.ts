@@ -11,6 +11,7 @@ import { HomeModule } from 'pages/main-page/home/home.module';
 import { ArticleModule } from 'pages/main-page/article/article.module';
 import { AboutModule } from 'pages/main-page/about/about.module';
 import { AuthModule } from 'pages/main-page/auth/auth.module';
+import { ButlerModule } from 'app/components/butler/butler.module';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from 'pages/main-page/auth/auth.module';
         AuthModule,
         NavbarModule,
         ContentModule,
+        ButlerModule,
         FooterModule
     ],
     declarations: [MainPageComponent]
