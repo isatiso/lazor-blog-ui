@@ -3,6 +3,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { CategoryDataService } from 'app/services/database/category-data.service';
 import { ButlerService } from 'services/components/butler.service';
+import { AccountService } from 'app/services/account.service';
+import { BosskeyService } from 'app/services/bosskey.service';
+import { ScrollorService } from 'app/services/scrollor.service';
 
 @Component({
     selector: 'la-home',
@@ -58,18 +61,17 @@ export class HomeComponent implements OnInit {
     load_article = 0;
 
     constructor(
-        public _category: CategoryDataService,
+        public account: AccountService,
+        public category: CategoryDataService,
+        public bosskey: BosskeyService,
+        private _scroller: ScrollorService,
         private _butler: ButlerService
     ) { }
 
     @ViewChild('topSpacer') top_spacer;
     @ViewChild('bottomSpacer') bottom_spacer;
 
-    ngOnInit() {
-        this._category.get_categories();
-        this.top_spacer.nativeElement.style.height = '3rem';
-        this.bottom_spacer.nativeElement.style.height = '3rem';
-        setTimeout(() => { this.load_article = 1; }, 0);
+    set_butler() {
         this._butler.button_list = [{
             name: 'navToggle',
             icon: () => 'view_list',
@@ -97,12 +99,28 @@ export class HomeComponent implements OnInit {
         }];
     }
 
+    ngOnInit() {
+        this.category.get_categories();
+        this.top_spacer.nativeElement.style.height = '3rem';
+        this.bottom_spacer.nativeElement.style.height = '3rem';
+        setTimeout(() => { this.load_article = 1; }, 0);
+        this.set_butler();
+    }
+
     get categories() {
-        return this._category.list.value;
+        return this.category.list.value;
     }
 
     get articles() {
-        return this._category.articles.value;
+        return this.category.articles.value;
+    }
+
+    get articles_num() {
+        if (!this.category.articles.value) {
+            return 0;
+        } else {
+            return this.category.articles.value.length;
+        }
     }
 
     show_options(category) {
@@ -118,17 +136,17 @@ export class HomeComponent implements OnInit {
     }
 
     is_current(category) {
-        return this._category.is_current(category);
+        return this.category.is_current(category);
     }
 
     set_current_category(category) {
         const status = category.show_options;
-        for (const cate of this._category.list.value) {
+        for (const cate of this.category.list.value) {
             cate.show_options = 'none';
         }
         if (!this.is_current(category)) {
             category.show_options = 'current';
-            this._category.get_articles(category);
+            this.category.get_articles(category);
         } else {
             category.show_options = status === 'options' ? 'current' : 'options';
         }

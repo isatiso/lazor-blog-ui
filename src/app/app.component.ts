@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { AccountService } from 'app/services/account.service';
+import { BosskeyService } from 'app/services/bosskey.service';
 
 declare var anime: any;
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     constructor(
+        public bosskey: BosskeyService,
         private _account: AccountService
     ) { }
 

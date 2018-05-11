@@ -17,7 +17,7 @@
         padding: 0;
         border-radius: 1.8rem;
         border-width: 0;
-        background-color: map-get($primary, 400);
+        background-color: map-get($accent, 500);
         box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
         .helper {
             display: inline-block;
@@ -34,8 +34,15 @@
     .option {
         z-index: 49;
         position: fixed;
-        bottom: 33px;
-        right: 33px;
+        bottom: 2.3rem;
+        right: 2.3rem;
+        width: 2.6rem;
+        height: 2.6rem;
+        margin: 0;
+        padding: 0;
+        border-radius: 1.3rem;
+        border-width: 0;
+        background-color: map-get($mat-grey, 500);
         .mat-icon {
             color: white;
         }

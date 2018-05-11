@@ -1,0 +1,16 @@
+<router-outlet name="butler"></router-outlet>
+<div class="container-fluid editor-container">
+    <div class="row">
+        <div class="col-lg-6 editor">
+            <mat-form-field  #editor appearance="outline" class="editor-textarea">
+                <textarea matInput matTextareaAutosize [(ngModel)]="content" [matAutosizeMinRows]="0" minRows="5" #contentRef></textarea>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-6 preview">
+            <div id="tab2">
+                <markdown [data]="content" [renderLatex]="render_latex"></markdown>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet name="footer"></router-outlet>

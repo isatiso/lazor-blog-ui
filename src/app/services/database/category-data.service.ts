@@ -52,6 +52,7 @@ export class CategoryDataService {
     }
 
     get_categories(options?: Options) {
+        // 使用缓存的版本
         options = options || new Options({});
         const cache_info = this._storage.sread('category_list');
         console.log(this.current.value);
@@ -88,17 +89,25 @@ export class CategoryDataService {
         }
     }
 
-    get_articles(category?: Category) {
+    get_articles(category?: Category, options?: Options) {
+        // 使用缓存的版本
+        options = options || new Options({});
         this.set_current(category);
-        this._http.get(this._api.article_list(), { params: { category_id: category.category_id } }).subscribe(
-            res => {
-                const data = this._assemble_data(
-                    res['data']['article_list'], res['data']['order_list'], 'article_id');
-                this._storage.swrite('category-' + category.category_id, JSON.stringify(data));
-                this.articles.next(data);
-            },
-            error => {
-            }
-        );
+        const cache_info = this._storage.sread('category-' + category.category_id);
+
+        if (options.flush || !cache_info) {
+            this._http.get(this._api.article_list(), { params: { category_id: category.category_id } }).subscribe(
+                res => {
+                    const data = this._assemble_data(
+                        res['data']['article_list'], res['data']['order_list'], 'article_id');
+                    this._storage.swrite('category-' + category.category_id, JSON.stringify(data));
+                    this.articles.next(data);
+                },
+                error => {
+                }
+            );
+        } else {
+            this.articles.next(JSON.parse(cache_info));
+        }
     }
 }

@@ -9,14 +9,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="display-4 title">Hi, 板蓝根</h1>
+                            <h1 class="display-4 title">Hi, {{account.current_user.value.user_name}}</h1>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <ul class="category-list">
-                                <li *ngFor="let category of _category.list.value">
+                                <li *ngFor="let category of category.list.value">
                                     <mat-card [@showOptions]="category.show_options" (click)="set_current_category(category)">
                                         {{ category.category_name }}
                                     </mat-card>
@@ -40,26 +40,32 @@
                             </ul>
 
                         </div>
-                        <div class="col-lg-8">
-                            <div class="article-title">
+                        <div class="col-lg-9">
+                            <div class="article-title font-sub-title">
                                 Article
                             </div>
                             <ul class="article-list">
-                                <li *ngFor="let article of _category.articles.value" class="article-item">
+                                <li *ngFor="let article of category.articles.value" class="article-item">
                                     <div class="helper"></div>
                                     <button class="article-name" routerLink="/main/article/{{article.article_id}}" [@loadArticle]="load_article">
                                         {{ article.title }}
                                     </button>
                                 </li>
                             </ul>
+                            <div class="no-article font-sub-title" *ngIf="!articles_num">
+                                <div class="no-article-item" [@loadArticle]="load_article">
+                                    当前分类还没有添加文章
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </mat-card>
         </div>
     </div>
+    <div class="row">
+        <div #bottomSpacer></div>
+    </div>
 </div>
-<div class="row">
-    <div #bottomSpacer></div>
-</div>
+
 <router-outlet name="footer"></router-outlet>

@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
     }
 
     constructor(
-        private _account: AccountService
+        public account: AccountService
     ) { }
 
     @ViewChild('navbar') navbar;
@@ -24,10 +24,10 @@ export class NavbarComponent implements OnInit {
     }
 
     get current_user() {
-        return this._account.current_user.value;
+        return this.account.current_user.value;
     }
 
     log_out() {
-        this._account.log_out();
+        this.account.log_out();
     }
 }

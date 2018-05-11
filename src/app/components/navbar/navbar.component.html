@@ -28,10 +28,10 @@
             </span>
         </button>
         <mat-menu #menu="matMenu" xPosition="before" class="nav-menu">
-            <button mat-menu-item routerLink="/main/auth" class="nav-menu">
+            <button mat-menu-item *ngIf="!account.current_user.value" routerLink="/main/auth" class="nav-menu">
                 <span>登录</span>
             </button>
-            <button mat-menu-item (click)="log_out()" class="nav-menu">
+            <button mat-menu-item *ngIf="account.current_user.value" (click)="log_out()" class="nav-menu">
                 <span>安全退出</span>
             </button>
         </mat-menu>

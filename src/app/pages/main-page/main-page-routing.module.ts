@@ -12,6 +12,7 @@ import { AboutComponent } from 'pages/main-page/about/about.component';
 import { AuthComponent } from 'app/pages/main-page/auth/auth.component';
 import { AuthGuard } from 'app/guards/auth.guard';
 import { ButlerComponent } from 'app/components/butler/butler.component';
+// import { EditorComponent } from 'app/pages/main-page/editor/editor.component';
 
 const routes: Routes = [
     {
@@ -34,10 +35,19 @@ const routes: Routes = [
             {
                 path: 'article/:id', component: ArticleComponent,
                 children: [
+                    { path: '', component: ButlerComponent, outlet: 'butler' },
                     { path: '', component: ContentComponent, outlet: 'content' },
                     { path: '', component: FooterComponent, outlet: 'footer' },
                 ]
             },
+            // {
+            //     path: 'editor/:id', component: EditorComponent,
+            //     children: [
+            //         // { path: '', component: ContentComponent, outlet: 'content' },
+            //         { path: '', component: ButlerComponent, outlet: 'butler' },
+            //         { path: '', component: FooterComponent, outlet: 'footer' },
+            //     ]
+            // },
             {
                 path: 'about', component: AboutComponent,
                 children: [
