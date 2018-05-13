@@ -32,7 +32,7 @@ export class EditorComponent implements OnInit {
     set content(value) {
         clearTimeout(this.timer);
         this.current_data.content = value;
-        this.timer = setTimeout(() => { this.render_latex++; }, 700);
+        this.timer = setTimeout(() => { this.render_latex++; }, 400);
     }
 
     get title() {
@@ -42,16 +42,16 @@ export class EditorComponent implements OnInit {
     set title(value) {
         clearTimeout(this.timer);
         this.current_data.title = value;
-        this.timer = setTimeout(() => { this.render_latex++; }, 700);
+        this.timer = setTimeout(() => { this.render_latex++; }, 400);
     }
 
     ngOnInit() {
-        console.log(this.editor);
         this.current = this._route.params['value']['id'];
         this._article.get_article(this.current).subscribe(
             value => {
                 this.current_data.title = value.title;
                 this.current_data.content = value.content;
+                this.render_latex++;
             });
         // this.editor.nativeElement.style.height = window.innerHeight + 'px';
     }

@@ -18,13 +18,13 @@
                     border-width: 0;
                     outline-style: none;
                     padding: 1rem 2rem;
-                    // font-family: $font-title;
                     font-size: 2rem;
                 }
             }
             .editor-text-wrapper {
-                height: calc(100% - 3rem);
+                height: calc(100% - 8rem);
                 .editor-textarea {
+                    font-family: $font-code;
                     resize: none;
                     outline-style: none;
                     border-width: 0;

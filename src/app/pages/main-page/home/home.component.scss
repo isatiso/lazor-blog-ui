@@ -56,7 +56,7 @@ ul.category-list {
     width: 100%;
     height: 3.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    line-height: 3.5rem;
+    line-height: 3.8rem;
     padding-left: 20px;
 }
 
@@ -64,8 +64,10 @@ ul.category-list {
     width: 100%;
     height: 3.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    line-height: 3.5rem;
+    line-height: 3.8rem;
     padding-left: 20px;
+    font-weight: 300;
+    color: map-get($mat-grey, 500);
     .no-article-item {
         transform: translateX(-6rem);
     }
@@ -82,19 +84,26 @@ ul.article-list {
     li.article-item {
         background-color: #ffffff;
         width: 100%;
-        height: 3.5rem;
+        height: 3rem;
         padding-left: 1rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-        .helper {
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background-color 100ms ease-in-out;
+        &:hover {
+            background-color: #f0f0f0;
         }
+        // .helper {
+        //     display: inline-block;
+        //     height: 100%;
+        //     vertical-align: middle;
+        // }
         button.article-name {
             display: inline-block;
             vertical-align: middle;
-            height: 2.5rem;
-            border-radius: 1.25rem;
+            height: 2rem;
+            border-radius: 1rem;
             border-width: 0;
             align-items: center;
             padding: 0rem;
@@ -103,9 +112,22 @@ ul.article-list {
             background-color: map-get($primary, 400);
             color: white;
             font-weight: 300;
-            font-size: 1rem;
+            font-size: .8rem!important;
             opacity: 0;
             transform: translateX(-6rem);
+        }
+        .spacer {
+            flex: auto;
+            // display: inline-block;
+            vertical-align: middle;
+            height: 2rem;
+        }
+        .article-action {
+            // display: inline-block;
+            vertical-align: middle;
+            margin-right: 1rem;
+            color: map-get($mat-blue, 500);
+            cursor: pointer;
         }
     }
 }

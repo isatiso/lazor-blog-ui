@@ -46,10 +46,12 @@
                             </div>
                             <ul *ngIf="!category.loading_articles.value" class="article-list">
                                 <li *ngFor="let article of category.articles.value" class="article-item">
-                                    <div class="helper"></div>
+                                    <!-- <div class="helper"></div> -->
                                     <button class="article-name" routerLink="/main/article/{{article.article_id}}" [@loadArticle]="load_article">
                                         {{ article.title }}
                                     </button>
+                                    <span class="spacer"></span>
+                                    <a class="article-action" (click)="go_editor(article.article_id)">编辑</a>
                                 </li>
                             </ul>
                             <div *ngIf="category.loading_articles.value" class="spinner-container">

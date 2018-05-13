@@ -6,6 +6,7 @@ import { ButlerService } from 'services/components/butler.service';
 import { AccountService } from 'app/services/account.service';
 import { BosskeyService } from 'app/services/bosskey.service';
 import { ScrollorService } from 'app/services/scrollor.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'la-home',
@@ -65,7 +66,8 @@ export class HomeComponent implements OnInit {
         public category: CategoryDataService,
         public bosskey: BosskeyService,
         private _scroller: ScrollorService,
-        private _butler: ButlerService
+        private _butler: ButlerService,
+        private _router: Router
     ) { }
 
     @ViewChild('topSpacer') top_spacer;
@@ -150,6 +152,10 @@ export class HomeComponent implements OnInit {
         } else {
             category.show_options = status === 'options' ? 'current' : 'options';
         }
+    }
+
+    go_editor(article_id) {
+        this._router.navigate(['/editor/' + article_id]);
     }
 
 }
