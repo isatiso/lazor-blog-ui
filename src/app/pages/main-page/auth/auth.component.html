@@ -19,11 +19,10 @@
                             <mat-label>Password</mat-label>
                             <input matInput [(ngModel)]="sign_in_data.password" type="password" />
                         </mat-form-field>
-
-                        <button mat-raised-button color="primary" class="w-100" (click)="sign_in($event)">开始浏览</button>
-
-                        <div class="my-divider"></div>
-                        <div class="lead w-100 ">
+                        <div class="text-right">
+                            <button mat-raised-button color="primary" class="w-100 submit-button" (click)="sign_in($event)">开始浏览</button>
+                        </div>
+                        <div class="lead w-100 submit-info">
                             如有任何问题，联系邮箱 sieglive@163.com
                         </div>
                     </div>

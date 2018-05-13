@@ -2,12 +2,28 @@
 <div class="container-fluid editor-container">
     <div class="row">
         <div class="col-lg-6 editor">
-            <mat-form-field  #editor appearance="outline" class="editor-textarea">
-                <textarea matInput matTextareaAutosize [(ngModel)]="content" [matAutosizeMinRows]="0" minRows="5" #contentRef></textarea>
-            </mat-form-field>
+            <div class="title-container">
+                <input [(ngModel)]="title" />
+            </div>
+            <nav class="navbar">
+                <div class="navbar-nav">
+                    <button mat-button routerLink="/main/home" class="nav-menu">回主页</button>
+                </div>
+                <div class="collapse navbar-collapse"></div>
+                <div class="navbar-nav">
+                    <button mat-button routerLink="/main/home" class="nav-menu">发布更新</button>
+                </div>
+            </nav>
+
+            <div #editor class="editor-text-wrapper">
+                <textarea class="editor-textarea" [(ngModel)]="content" #contentRef></textarea>
+            </div>
         </div>
-        <div class="col-lg-6 preview">
-            <div id="tab2">
+        <div class="col-lg-6 preview  border-left">
+            <div class="title-container">
+                <h1>{{title}}</h1>
+            </div>
+            <div class="editor-preview-wrapper">
                 <markdown [data]="content" [renderLatex]="render_latex"></markdown>
             </div>
         </div>

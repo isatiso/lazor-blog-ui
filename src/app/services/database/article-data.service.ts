@@ -11,6 +11,8 @@ import { StorageService } from 'app/services/storage.service';
 export class ArticleDataService {
 
     current: BehaviorSubject<ArticleData>;
+    loading_content = new BehaviorSubject<boolean>(false);
+
     private _api = new LazorBlogApi();
 
     constructor(

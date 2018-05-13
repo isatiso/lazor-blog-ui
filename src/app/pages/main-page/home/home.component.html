@@ -44,7 +44,7 @@
                             <div class="article-title font-sub-title">
                                 Article
                             </div>
-                            <ul class="article-list">
+                            <ul *ngIf="!category.loading_articles.value" class="article-list">
                                 <li *ngFor="let article of category.articles.value" class="article-item">
                                     <div class="helper"></div>
                                     <button class="article-name" routerLink="/main/article/{{article.article_id}}" [@loadArticle]="load_article">
@@ -52,6 +52,10 @@
                                     </button>
                                 </li>
                             </ul>
+                            <div *ngIf="category.loading_articles.value" class="spinner-container">
+                                <mat-spinner strokeWidth="5" diameter="50" class="spinner-item"></mat-spinner>
+                                <div class="spinner-text">加载中...</div>
+                            </div>
                             <div class="no-article font-sub-title" *ngIf="!articles_num">
                                 <div class="no-article-item" [@loadArticle]="load_article">
                                     当前分类还没有添加文章

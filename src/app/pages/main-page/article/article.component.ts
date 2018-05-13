@@ -18,7 +18,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     constructor(
         private _content: ContentService,
         private _butler: ButlerService,
-        private _article_data: ArticleDataService,
+        private _article: ArticleDataService,
         private _route: ActivatedRoute,
         private _router: Router,
         private _scrollor: ScrollorService,
@@ -67,10 +67,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.current = this._route.params['value']['id'];
-        this._article_data.get_article(this.current).subscribe(
+        this._article.loading_content.next(true);
+        this._article.get_article(this.current).subscribe(
             value => {
                 this._content.title.next(value.title);
                 this._content.content.next(value.content);
+                this._article.loading_content.next(false);
             });
         this.set_butler();
         this.set_boss_key();

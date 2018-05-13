@@ -1,1 +1,13 @@
 // @import '../../../assets/scss/material_theming.scss';
+.spinner-container {
+    height: 100%;
+    .spinner-item {
+        margin: 0 auto;
+        margin-top: 5rem;
+    }
+    .spinner-text {
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        text-align: center;
+    }
+}

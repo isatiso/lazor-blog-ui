@@ -55,8 +55,10 @@
                     "options": {
                         "browserTarget": "lazor-blog-ui:build",
                         "host": "localhost",
-                        "port": 9469,
-                        "liveReload": true
+                        "port": 80,
+                        "liveReload": true,
+                        "disableHostCheck": true,
+                        "proxyConfig": "proxy.json"
                     },
                     "configurations": {
                         "production": {

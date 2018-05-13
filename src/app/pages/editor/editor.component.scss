@@ -1,3 +1,4 @@
+@import '../../../assets/scss/material_theming.scss';
 .editor-container {
     background-color: #ff0;
     width: 100%;
@@ -8,14 +9,28 @@
             background-color: #f0f0f0;
             width: 100%;
             height: 100%;
-            .editor-textarea {
+            padding: 0;
+            overflow-y: hidden;
+            .title-container {
                 width: 100%;
-                height: 100%;
-                .mat-form-field-wrapper {
-                    padding: 0 !important;
-                    margin: 0 !important;
+                input {
                     width: 100%;
-                    height: 100%;
+                    border-width: 0;
+                    outline-style: none;
+                    padding: 1rem 2rem;
+                    // font-family: $font-title;
+                    font-size: 2rem;
+                }
+            }
+            .editor-text-wrapper {
+                height: calc(100% - 3rem);
+                .editor-textarea {
+                    resize: none;
+                    outline-style: none;
+                    border-width: 0;
+                    width: 100%;
+                    height: 100%!important;
+                    padding: 40px;
                 }
             }
         }
@@ -23,6 +38,27 @@
             background-color: white;
             padding: 0;
             margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            .title-container {
+                width: 100%;
+                h1 {
+                    width: 100%;
+                    border-width: 0;
+                    outline-style: none;
+                    padding: 1rem 2rem;
+                    margin: 0;
+                    font-family: $font-title;
+                    font-size: 2.6rem;
+                }
+            }
+            .editor-preview-wrapper {
+                padding: 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                margin: 0;
+            }
         }
     }
 }

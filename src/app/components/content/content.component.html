@@ -3,7 +3,7 @@
         <div #topSpacer></div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" *ngIf="!article.loading_content.value">
             <h1 class="title display-4">
                 {{ title }}
             </h1>
@@ -11,6 +11,12 @@
             <markdown [data]="content" [renderLatex]="renderLatex">
 
             </markdown>
+        </div>
+        <div class="col-lg-12" *ngIf="article.loading_content.value">
+            <div class="spinner-container">
+                <mat-spinner strokeWidth="5" diameter="50" class="spinner-item"></mat-spinner>
+                <div class="spinner-text">加载中...</div>
+            </div>
         </div>
     </div>
 </div>

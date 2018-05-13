@@ -10,7 +10,8 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    MatDividerModule
+    MatDividerModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 
 import { HomeComponent } from './home.component';
@@ -25,6 +26,7 @@ import { HomeComponent } from './home.component';
         MatFormFieldModule,
         MatInputModule,
         MatMenuModule,
+        MatProgressSpinnerModule,
         MatDividerModule,
         RouterModule.forChild([])
     ],

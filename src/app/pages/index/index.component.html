@@ -67,7 +67,7 @@
                 <input matInput [(ngModel)]="password" type="password" />
             </mat-form-field>
 
-            <button mat-raised-button class="w-100" color="primary" (click)="sign_up($event)">
+            <button mat-raised-button class="w-100 submit-button" color="primary" (click)="sign_up($event)">
                 现在注册
             </button>
         </div>
@@ -75,7 +75,7 @@
         <div class="col-lg-6 text-center">
             <div class="lead">
                 或者 &nbsp;&nbsp;
-                <button mat-raised-button class="w-75" routerLink="/main/auth">
+                <button mat-raised-button class="w-75  submit-button" routerLink="/main/auth">
                     立即登录
                 </button>
             </div>

@@ -1,19 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ContentService } from 'services/components/content.service';
+import { ArticleDataService } from 'app/services/database/article-data.service';
 
 @Component({
     selector: 'la-content',
     templateUrl: './content.component.html',
     styleUrls: ['./content.component.scss']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, OnDestroy {
     title = '';
     renderLatex = 1;
 
     private _content_data = '';
 
     constructor(
-        private _content: ContentService
+        private _content: ContentService,
+        public article: ArticleDataService,
     ) { }
 
     @ViewChild('topSpacer') top_spacer;
@@ -26,6 +28,11 @@ export class ContentComponent implements OnInit {
 
         this._content.title.subscribe(
             value => { this.title = value; });
+    }
+
+    ngOnDestroy() {
+        this.content = '';
+        this.title = '';
     }
 
     get content() {

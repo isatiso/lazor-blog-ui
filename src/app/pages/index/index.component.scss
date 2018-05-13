@@ -1,3 +1,4 @@
+@import '../../../assets/scss/material_theming.scss';
 .text-wrapper {
     padding: 2rem;
 }
@@ -15,4 +16,12 @@
 .only-image {
     margin: 0;
     width: 100%;
+}
+
+.submit-button {
+    margin: 0 auto;
+    height: 43px;
+    font-size: 1.2rem;
+    font-family: $font-title;
+    letter-spacing: 2px;
 }

@@ -13,6 +13,8 @@ export class CategoryDataService {
     list = new BehaviorSubject<Category[]>(null);
     articles = new BehaviorSubject<ArticleData[]>(null);
     current = new BehaviorSubject<Category>(null);
+    loading_articles = new BehaviorSubject<boolean>(false);
+    loading_categories = new BehaviorSubject<boolean>(false);
 
     private _api = new LazorBlogApi();
 
@@ -94,6 +96,7 @@ export class CategoryDataService {
         options = options || new Options({});
         this.set_current(category);
         const cache_info = this._storage.sread('category-' + category.category_id);
+        this.loading_articles.next(true);
 
         if (options.flush || !cache_info) {
             this._http.get(this._api.article_list(), { params: { category_id: category.category_id } }).subscribe(
@@ -102,12 +105,14 @@ export class CategoryDataService {
                         res['data']['article_list'], res['data']['order_list'], 'article_id');
                     this._storage.swrite('category-' + category.category_id, JSON.stringify(data));
                     this.articles.next(data);
+                    this.loading_articles.next(false);
                 },
                 error => {
                 }
             );
         } else {
             this.articles.next(JSON.parse(cache_info));
+            this.loading_articles.next(false);
         }
     }
 }

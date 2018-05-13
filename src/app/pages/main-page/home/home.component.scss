@@ -109,3 +109,15 @@ ul.article-list {
         }
     }
 }
+
+.spinner-container {
+    height: 100%;
+    .spinner-item {
+        margin: 0 auto;
+        margin-top: 5rem;
+    }
+    .spinner-text {
+        margin-top: 2rem;
+        text-align: center;
+    }
+}
