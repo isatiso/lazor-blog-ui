@@ -91,6 +91,7 @@ export class ArticleDataService {
                     this._storage.sremove('article-' + article_id);
                     this._category.get_articles(
                         this._category.current.value, new Options({ flush: true }));
+                    this._category.set_current(this._category.current.value);
                 }
             },
             error => {
