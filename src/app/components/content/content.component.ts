@@ -21,7 +21,7 @@ export class ContentComponent implements OnInit, OnDestroy {
     @ViewChild('topSpacer') top_spacer;
 
     ngOnInit() {
-        this.top_spacer.nativeElement.style.height = '3rem';
+        // this.top_spacer.nativeElement.style.height = '3rem';
 
         this._content.content.subscribe(
             value => { this.content = value; });

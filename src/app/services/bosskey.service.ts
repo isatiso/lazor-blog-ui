@@ -10,8 +10,10 @@ export class BosskeyService {
 
     shoot(event?) {
         if (event.ctrlKey && event.key in this.actions) {
+            console.log(this.actions);
             this.actions[event.key]();
             event.preventDefault();
+            return false;
         }
         return event;
     }

@@ -1,4 +1,8 @@
 @import '../../../../assets/scss/material_theming.scss';
+h1.title {
+    margin-top: 1.2rem;
+}
+
 ul.category-list {
     list-style: none;
     padding: 0rem;
@@ -90,11 +94,10 @@ ul.article-list {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        transition: background-color 100ms ease-in-out;
+        transition: background-color 50ms ease-in-out;
         &:hover {
             background-color: #f0f0f0;
-        }
-        // .helper {
+        } // .helper {
         //     display: inline-block;
         //     height: 100%;
         //     vertical-align: middle;
@@ -112,13 +115,12 @@ ul.article-list {
             background-color: map-get($primary, 400);
             color: white;
             font-weight: 300;
-            font-size: .8rem!important;
+            font-size: .8rem !important;
             opacity: 0;
             transform: translateX(-6rem);
         }
         .spacer {
-            flex: auto;
-            // display: inline-block;
+            flex: auto; // display: inline-block;
             vertical-align: middle;
             height: 2rem;
         }

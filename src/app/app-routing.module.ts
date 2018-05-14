@@ -6,7 +6,7 @@ import { EditorComponent } from 'app/pages/editor/editor.component';
 
 const routes: Routes = [
     {
-        path: 'index',
+        path: '',
         loadChildren: 'pages/index/index.module#IndexModule',
         pathMatch: 'full',
     },
@@ -18,11 +18,6 @@ const routes: Routes = [
     {
         path: 'editor',
         loadChildren: 'pages/editor/editor.module#EditorModule',
-    },
-    {
-        path: '',
-        redirectTo: '/index',
-        pathMatch: 'full',
     },
 ];
 

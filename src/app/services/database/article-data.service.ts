@@ -4,6 +4,8 @@ import { BehaviorSubject, AsyncSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LazorBlogApi } from 'app/public/api-definition';
 import { StorageService } from 'app/services/storage.service';
+import { NoticeService } from 'app/services/notice.service';
+import { CategoryDataService } from 'app/services/database/category-data.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +19,8 @@ export class ArticleDataService {
 
     constructor(
         private _http: HttpClient,
+        private _notice: NoticeService,
+        private _category: CategoryDataService,
         private _storage: StorageService
     ) { }
 
@@ -44,5 +48,23 @@ export class ArticleDataService {
         }
 
         return courier;
+    }
+
+    save(source) {
+        this._http.put('/middle/article', {
+            article_id: source.article_id,
+            title: source.title,
+            content: source.content,
+            category_id: source.category_id,
+        }).subscribe(
+            res => {
+                if (!res['status']) {
+                    // this._storage.swrite(`article-${res['data']['article_id']}`, JSON.stringify(res['data']));
+                    this._storage.sclear();
+                    this._notice.bar('Save Article Successfully.', 'OK', null);
+                    this._category.get_articles(this._category.current.value, new Options({ flush: true }));
+                } else if (res['status'] === 3005) {
+                }
+            });
     }
 }

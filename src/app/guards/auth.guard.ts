@@ -18,6 +18,16 @@ export class AuthGuard implements CanActivate {
         private _account: AccountService
     ) { }
 
+    private _extract_cookie(cookie) {
+        const items = cookie.split('|');
+        if (items.length !== 6) {
+            return null;
+        }
+        const timestamp = items[2].split(':')[1];
+        const info = atob(items[4].split(':')[1]);
+        return [timestamp, info];
+    }
+
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -27,7 +37,6 @@ export class AuthGuard implements CanActivate {
                 if (!res['status']) {
                     return true;
                 } else {
-                    console.log(res);
                     const params: NavigationExtras = {
                         queryParams: { 'backurl': state.url },
                     };

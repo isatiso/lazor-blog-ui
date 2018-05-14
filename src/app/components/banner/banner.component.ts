@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,9 @@ export class BannerComponent implements OnInit {
 
     constructor(private _router: Router) { }
 
+    @ViewChild('holder') holder;
     ngOnInit() {
+        this.holder.nativeElement.style.height = window.innerHeight * 0.2 + 'px';
     }
 
     go_home() {

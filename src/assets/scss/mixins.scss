@@ -1,0 +1,184 @@
+/*
+ * mixin
+*/
+
+// font-mixin
+@mixin font-shorthand($fontSize, $fontWeight, $lineHeight) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    line-height: $lineHeight;
+} //Lucida font mixin
+//--------------------------------------------------
+@mixin font-family-lucida() {
+    font-family: $lucidaFontFamily;
+}
+
+@mixin font-lucida($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-lucida();
+    @include font-shorthand($size, $weight, $lineHeight);
+}
+
+@mixin font-family-kaiti() {
+    font-family: $kaitiFontFamily;
+}
+
+@mixin font-kaiti($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-kaiti();
+    @include font-shorthand($size, $weight, $lineHeight);
+}
+
+@mixin font-family-fangsong() {
+    font-family: $fangsongFontFamily;
+}
+
+@mixin font-fangsong($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+    @include font-family-fangsong();
+    @include font-shorthand($size, $weight, $lineHeight);
+} //btn-mixin
+//--------------------------------------------------
+@mixin btnBackground($textColor, $normalColor, $hoverBtnColor, $pressedColor) {
+    color: $textColor;
+    border-color: $normalColor;
+    background: $normalColor;
+    &:hover,
+    &:focus {
+        color: $textColor;
+        border-color: $hoverBtnColor;
+        background-color: $hoverBtnColor;
+    }
+    &.active,
+    &:active {
+        outline: none;
+        color: $textColor;
+        border-color: $pressedColor;
+        background: $pressedColor;
+        box-shadow: none;
+    }
+    &.disabled,
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            cursor: not-allowed;
+            background: lighten($hoverBtnColor, 4%);
+            border-color: lighten($hoverBtnColor, 4%);
+        }
+    }
+} // link-mixin
+//--------------------------------------------------
+@mixin linkColor($normalColor: $mainlinkBlue, $hoverBtnColor: $mainBluePressed, $pressedColor: $mainBluePressed, $disabledColor: $grayLight) {
+    color: $normalColor;
+    &:hover {
+        color: $hoverBtnColor
+    }
+    &.active,
+    &:active,
+    &:focus {
+        color: $pressedColor;
+    }
+    &.disabled,
+    &[disabled] {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+            cursor: not-allowed;
+            color: $disabledColor;
+        }
+    }
+} // Sprite mixin
+//--------------------------------------------------
+@mixin sprite($x, $y) {
+    background-position: $x $y;
+    background-image: $sprite;
+    background-image: $sprite1x \9;
+    background-repeat: no-repeat;
+    background-size: 250px;
+}
+
+@mixin home-sprite($x, $y) {
+    background-position: $x $y;
+    background-image: $homeSprite;
+    background-repeat: no-repeat;
+} // Transformations
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -moz-transform: rotate($degrees);
+    -ms-transform: rotate($degrees);
+    transform: rotate($degrees);
+}
+
+@mixin translate($x, $y) {
+    -webkit-transform: translate($x, $y);
+    -ms-transform: translate($x, $y);
+    transform: translate($x, $y);
+} //animation
+@mixin animation($name, $duration, $animation, $delay, $count, $direction) {
+    -webkit-animation: $name $duration $animation $delay $count $direction;
+    -moz-animation: $name $duration $animation $delay $count $direction;
+    animation: $name $duration $animation $delay $count $direction;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+} // 重写bootstrap button-variant mixin
+@mixin jianshu-button-variant($color, $background, $border, $hoverbgColor, $hoverColor:$color, $sbgPercent:10%, $lbgPercent:17%, $sborderPercent:12%, $lborderPercent:25%) {
+    color: $color;
+    background-color: $background;
+    border-color: $border;
+    &:focus,
+    &.focus {
+        color: $hoverColor;
+        background-color: $hoverbgColor;
+        border-color: $hoverbgColor;
+    }
+    &:hover {
+        color: $hoverColor;
+        background-color: $hoverbgColor;
+        border-color: $hoverbgColor;
+    }
+    &:active,
+    &.active,
+    .open>&.dropdown-toggle {
+        color: $hoverColor;
+        background-color: lighten($hoverbgColor, $sbgPercent);
+        border-color: lighten($hoverbgColor, $sborderPercent);
+        &:hover,
+        &:focus,
+        &.focus {
+            color: $hoverColor;
+            background-color: lighten($hoverbgColor, $lbgPercent);
+            border-color: lighten($hoverbgColor, $lborderPercent);
+        }
+    }
+    &:active,
+    &.active,
+    .open>&.dropdown-toggle {
+        background-image: none;
+    }
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        &:hover,
+        &:focus,
+        &.focus {
+            background-color: $background;
+            border-color: $border;
+        }
+    }
+    .badge {
+        color: $color;
+        background-color: $background;
+    }
+}

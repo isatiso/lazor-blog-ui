@@ -6,12 +6,26 @@
                 <input [(ngModel)]="title" />
             </div>
             <nav class="navbar">
-                <div class="navbar-nav">
-                    <button mat-button routerLink="/main/home" class="nav-menu">回主页</button>
+                <div class="navbar-nav text-left">
+                    <button mat-button routerLink="/main/home" class="nav-item">回主页</button>
                 </div>
-                <div class="collapse navbar-collapse"></div>
-                <div class="navbar-nav">
-                    <button mat-button routerLink="/main/home" class="nav-menu">发布更新</button>
+                <div class="navbar-nav text-right">
+                    <button mat-button (click)="go_article()" class="nav-item">查看文章</button>
+                </div>
+                <div class="navbar-nav text-right">
+                    <button mat-button (click)="save_article()" class="nav-item">保存</button>
+                </div>
+                <div class="navbar-nav flex-grow-1"></div>
+                <div class="navbar-nav text-right">
+
+                    <mat-form-field>
+                        <span matPrefix>分类：</span>
+                        <mat-select [(ngModel)]="category_id">
+                            <mat-option *ngFor="let cate of category.list.value" [value]="cate.category_id">
+                                {{ cate.category_name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </nav>
 
@@ -24,7 +38,7 @@
                 <h1>{{title}}</h1>
             </div>
             <div class="editor-preview-wrapper">
-                <markdown [data]="content" [renderLatex]="render_latex"></markdown>
+                <markdown class="markdown-container" [data]="content" [renderLatex]="render_latex"></markdown>
             </div>
         </div>
     </div>

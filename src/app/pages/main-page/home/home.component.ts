@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { CategoryDataService } from 'app/services/database/category-data.service';
@@ -57,7 +57,7 @@ import { Router } from '@angular/router';
         ]),
     ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
     load_article = 0;
 
@@ -102,11 +102,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        document.body.style.backgroundColor = '#f0f0f0';
         this.category.get_categories();
         this.top_spacer.nativeElement.style.height = '3rem';
         this.bottom_spacer.nativeElement.style.height = '3rem';
         setTimeout(() => { this.load_article = 1; }, 0);
         this.set_butler();
+    }
+
+    ngOnDestroy() {
+        document.body.style.backgroundColor = '';
     }
 
     get categories() {

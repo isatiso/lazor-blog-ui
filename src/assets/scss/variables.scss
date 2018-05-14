@@ -1,0 +1,137 @@
+@import "./mixins";
+/*
+ * 变量
+*/
+// 网站基础色
+$white:                 #ffffff;
+$black:                 #000000;
+
+//gray
+$grayCommom:            #333333;
+$grayCommomHover:       #2F2F2F;
+$grayDark:              #3F3F3F;
+$grayLine:              #DDDDDD;
+$grayLineSetting:       #d9d9d9;
+$grayLight:             #4f4f4f;
+$grayText:              #999999;
+$gray4A:                #4A4A4A;
+$grayA0:                #A0A0A0;
+$grayA5:                #A5A5A5;
+$grayB1:                #B1B1B1;
+$grayB4:                #B4B4B4;
+$grayB5:                #B5B5B5;
+$grayC3:                #C3C3C3;
+$grayC8:                #C8C8C8;
+$gray54:                #545454;
+$gray64:                #646464;
+$gray78:                #787878;
+$grayDC:                #DCDCDC;
+$grayEA:                #EAEAEA;
+$grayEE:                #EEEEEE;
+$grayE1:                #E1E1E1;
+$grayE4:                #E4E4E4;
+$grayE5:                #E5E5E5;
+$grayE6:                #E6E6E6;
+$grayF1:                #F1F1F1;
+$grayF3:                #F3F3F3;
+$grayF4:                #F4F4F4;
+$grayF7:                #F7F7F7;
+$grayF9:                #F9F9F9;
+$grayF5:                #F5F5F5;
+$grayFC:                #FCFCFC;
+$gray8C:                #8C8C8C;
+$gray9B:                #9B9B9B;
+$graySubmenu:           #969696;
+$gray99:                #999999;
+$grayBg:                #f5f5f5;
+$grayBorder:            #d5d5d5;
+$grayBorderLighter:     #F0F0F0;
+
+//red
+$redCommom:             #EA6F5A;
+$redCommomHover:        #EC6149;
+$redTag:                #EC6E56;
+$redTagHover:           #d2462e;
+
+//yellow
+$yellowCommon:          #F5A623;
+$yellowCommonHover:     #f1a11b;
+
+//green
+$greenCommom:           #42C02E;
+$greenCommomHover:      #3db922;
+$greenNightHover:       #5bd247;
+
+//blue
+$blueCommom:            #3194D0;
+$blueCommomHover:       #3194D0;
+$blueNightHover:        #3194D0;
+$blueBtnHover:          #187cb7;
+$blueUnread:            #F6FBFF;
+$blueArrow:             #E7F1FC;
+$blueArrowBorder:       #BAD0E9;
+
+//publish
+$pubCommom:             #41867A;
+$pubCommomHover:        #70B6AB;
+
+// social icon
+$weibo:                 #E05244;
+$weixin:                #00BB29;
+$qq:                    #498AD5;
+$douban:                #00820F;
+$google:                #E05244;
+
+// 复写bootstrap按钮默认颜色
+$brand-success:         $greenCommom;
+$brand-info:            $blueCommom;
+
+$btn-default-color:     $gray8C;
+$btn-default-bg:        $grayBorderLighter;
+$btn-default-border:    $grayBorderLighter;
+
+$btn-success-color:     $white;
+$btn-success-bg:        $brand-success;
+$btn-success-border:    $brand-success;
+
+$btn-info-border:       $brand-info;
+
+// 代码块变量
+$hljs-bg:               #F6F6F6;
+$hljs-color:            #657b83;
+$hljs-doctype:          #93a1a1;
+$hljs-keyword:          #859900;
+$hljs-number:           #2aa198;
+$hljs-decorator:        #268bd2;
+$hljs-attribute:        #b58900;
+$hljs-preprocessor:     #cb4b16;
+$hljs-deletion:         #dc322f;
+$hljs-link_label:       #6c71c4;
+$hljs-formula:          #eee8d5;
+$night-hljs-bg:         #282828;
+$night-hljs-color:      #839496;
+$night-hljs-doctype:    #586e75;
+$night-hljs-formula:    #073642;
+
+// 高度
+$basePHeight:           20px;
+$baseLineHeight:        20px;
+
+// 布局复写
+$grid-columns:          24;
+$screen-lg:             1081px;
+$container-lg:          960px;
+
+// 字体
+$blackFontFamily:       -apple-system, 'SF UI Text', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+$blackHeaderFontFamily: -apple-system, 'SF UI Display', Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+
+$songFontFamily:        Georgia, "Times New Roman", Times, "Songti SC", serif;
+$songHeaderFontFamily:  "Kai", "Kaiti SC", "KaiTi", "BiauKai", "楷体", "楷体_GB2312", "Songti SC", serif;
+
+$codeFontFamily:        Menlo, Monaco, Consolas, "Courier New", Monospace;
+
+
+
+// WEBPACK FOOTER //
+// webpack:///stylesheets/web/variables.scss

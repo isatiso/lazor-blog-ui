@@ -970,8 +970,8 @@ class Renderer {
         }
 
         lang = this.translate_lang(lang);
-
-        return `<pre><div class="outline">${escape(lang, true)}</div>` +
+        // <div class="outline">${escape(lang, true)}</div>
+        return `<pre class="prettyprint">` +
             `<code>${(escaped ? code : escape(code, true))}\n</code></pre>\n`;
     }
 
