@@ -26,10 +26,10 @@
                                             <div class="col-lg-6 text-center">
                                                 <div class="button-container">
                                                     <div class="helper"></div>
-                                                    <button mat-icon-button class="modify-button" color="primary" (click)="action.modify_category($event, category)">
+                                                    <button mat-icon-button class="modify-button" color="primary" (click)="modify_category($event, category)">
                                                         <mat-icon>create</mat-icon>
                                                     </button>
-                                                    <button *ngIf="category.category_type" mat-icon-button class="delete-button" color="warn" (click)="action.delete_category($event, category.category_id)">
+                                                    <button *ngIf="category.category_type" mat-icon-button class="delete-button" color="warn" (click)="delete_category($event, category.category_id)">
                                                         <mat-icon>delete</mat-icon>
                                                     </button>
                                                 </div>
@@ -51,7 +51,8 @@
                                         {{ article.title }}
                                     </button>
                                     <span class="spacer"></span>
-                                    <a class="article-action" (click)="go_editor(article.article_id)">编辑</a>
+                                    <a class="article-edit" (click)="go_editor(article.article_id)">编辑</a>
+                                    <a class="article-delete" (click)="delete_article(article.article_id, article.title)">删除</a>
                                 </li>
                             </ul>
                             <div *ngIf="category.loading_articles.value" class="spinner-container">

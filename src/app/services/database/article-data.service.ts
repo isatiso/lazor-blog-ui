@@ -6,6 +6,7 @@ import { LazorBlogApi } from 'app/public/api-definition';
 import { StorageService } from 'app/services/storage.service';
 import { NoticeService } from 'app/services/notice.service';
 import { CategoryDataService } from 'app/services/database/category-data.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +22,7 @@ export class ArticleDataService {
         private _http: HttpClient,
         private _notice: NoticeService,
         private _category: CategoryDataService,
+        private _router: Router,
         private _storage: StorageService
     ) { }
 
@@ -50,6 +52,20 @@ export class ArticleDataService {
         return courier;
     }
 
+    create(category_id) {
+        this._http.post('/middle/article', {
+            category_id: category_id,
+        }).subscribe(
+            res => {
+                if (!res['status']) {
+                    this._router.navigate(['/editor/' + res['data']['article_id']]);
+                    this._category.get_articles(category_id);
+                } else {
+                    this._notice.bar(res['msg'], res['status'], null);
+                }
+            });
+    }
+
     save(source) {
         this._http.put('/middle/article', {
             article_id: source.article_id,
@@ -66,5 +82,19 @@ export class ArticleDataService {
                 } else if (res['status'] === 3005) {
                 }
             });
+    }
+
+    delete(article_id: string) {
+        this._http.delete('/middle/article?article_id=' + article_id).subscribe(
+            res => {
+                if (!res['status']) {
+                    this._storage.sremove('article-' + article_id);
+                    this._category.get_articles(
+                        this._category.current.value, new Options({ flush: true }));
+                }
+            },
+            error => {
+            }
+        );
     }
 }

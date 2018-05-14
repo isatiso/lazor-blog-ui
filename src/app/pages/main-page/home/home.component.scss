@@ -124,11 +124,18 @@ ul.article-list {
             vertical-align: middle;
             height: 2rem;
         }
-        .article-action {
+        .article-edit {
             // display: inline-block;
             vertical-align: middle;
             margin-right: 1rem;
             color: map-get($mat-blue, 500);
+            cursor: pointer;
+        }
+        .article-delete {
+            // display: inline-block;
+            vertical-align: middle;
+            margin-right: 1rem;
+            color: map-get($mat-red, 500);
             cursor: pointer;
         }
     }

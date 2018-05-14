@@ -1,15 +1,12 @@
-<div style="width: 100%;text-align: center" (keyup)="submit($event)">
-    <!-- <mat-dialog-content style="width: 100%;">
-        <mat-input-container *ngFor="let input_item of data.input_list" style="width: 100%;">
-            <mat-placeholder>
-                {{ input_item.placeholder }}
-                <mat-icon>mode_edit</mat-icon>
-            </mat-placeholder>
-            <input matInput [(ngModel)]="input_item.value" [required]="input_item.required" [type]="input_item.type || 'text'" style="width: 100%;" />
-        </mat-input-container>
+<div style="width: 30rem;text-align: center" (keyup)="submit($event)">
+    <mat-dialog-content style="width: 100%;">
+        <mat-form-field *ngFor="let input_item of data.input_list" style="width: 100%;" appearance="legacy">
+            <input matInput [placeholder]="input_item.placeholder" [(ngModel)]="input_item.value" [required]="input_item.required" [type]="input_item.type || 'text'"
+                style="width: 100%;" />
+        </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions style="width: 100%;text-align: center; display: flex;">
         <button mat-raised-button [mat-dialog-close]="0" style="flex: 1">取消</button>
         <button mat-raised-button [mat-dialog-close]="assemble(data)" style="flex: 1" color="primary">确定</button>
-    </mat-dialog-actions> -->
+    </mat-dialog-actions>
 </div>

@@ -115,4 +115,33 @@ export class CategoryDataService {
             this.loading_articles.next(false);
         }
     }
+
+    create(category_name) {
+        if (category_name) {
+            this._http.post(
+                '/middle/category', { category_name: category_name }
+            ).subscribe(res => {
+                this.get_categories(new Options({ flush: true }));
+            });
+        }
+    }
+
+    modify(category_id, category_name) {
+        this._http.put(
+            '/middle/category', {
+                category_id: category_id,
+                category_name: category_name
+            }
+        ).subscribe(data => {
+            this.get_categories(new Options({ flush: true }));
+        });
+    }
+
+    delete(category_id) {
+        this._http.delete(
+            '/middle/category?category_id=' + category_id
+        ).subscribe(res => {
+            this.get_categories(new Options({ flush: true }));
+        });
+    }
 }

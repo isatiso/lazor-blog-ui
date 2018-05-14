@@ -7,6 +7,8 @@ import { AccountService } from 'app/services/account.service';
 import { BosskeyService } from 'app/services/bosskey.service';
 import { ScrollorService } from 'app/services/scrollor.service';
 import { Router } from '@angular/router';
+import { NoticeService } from 'app/services/notice.service';
+import { ArticleDataService } from 'app/services/database/article-data.service';
 
 @Component({
     selector: 'la-home',
@@ -66,7 +68,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         public category: CategoryDataService,
         public bosskey: BosskeyService,
         private _scroller: ScrollorService,
+        private _article: ArticleDataService,
         private _butler: ButlerService,
+        private _notice: NoticeService,
         private _router: Router
     ) { }
 
@@ -75,28 +79,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     set_butler() {
         this._butler.button_list = [{
-            name: 'navToggle',
-            icon: () => 'view_list',
-            // callback: event => this.action.toggle_show_cate(),
-            callback: event => { },
-            tool_tip: () => '编辑文章 (ctrl + E)',
-        }, {
             name: 'navCreate',
             icon: () => 'create',
             // callback: event => this.action.create_article(),
-            callback: event => { },
+            callback: event => { this.create_article(); },
             tool_tip: () => '写新文章'
         }, {
             name: 'navCreateCategory',
             icon: () => 'create_new_folder',
             // callback: event => this.action.create_category(),
-            callback: event => { },
+            callback: event => { this.create_category(); },
             tool_tip: () => '添加分类'
         }, {
             name: 'navTop',
             icon: () => 'arrow_upward',
-            // callback: event => this._scrollor.goto_top(),
-            callback: event => { },
+            callback: event => this._scroller.goto_top(),
             tool_tip: () => '回到顶部 (ctrl + ↑)'
         }];
     }
@@ -161,6 +158,64 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     go_editor(article_id) {
         this._router.navigate(['/editor/' + article_id]);
+    }
+
+    create_article() {
+        this._article.create(this.category.current.value.category_id);
+    }
+
+    delete_article(article_id, title) {
+        this._notice.warn(
+            {
+                msg: `删除 《${title}》`
+            },
+            res => {
+                if (res && article_id) {
+                    this._article.delete(article_id);
+                }
+            }
+        ).subscribe();
+    }
+
+    create_category() {
+        this._notice.input({
+            input_list: [{
+                name: 'category_name',
+                placeholder: 'Enter a New Name',
+                value: '',
+                required: true
+            }]
+        }, data => {
+            if (!data) { return; }
+            this.category.create(data.category_name.value);
+        }).subscribe();
+    }
+
+    modify_category(event, category) {
+        this._notice.input({
+            input_list: [{
+                name: 'category_name',
+                placeholder: 'Change Name of The Category',
+                value: category.category_name
+            }]
+        }, data => {
+            if (!data) { return; }
+            console.log(data);
+            this.category.modify(category.category_id, data.category_name.value);
+        }).subscribe();
+    }
+
+    delete_category(event, category_id) {
+        this._notice.warn(
+            {
+                msg: '删除分类以及分类中所有的文章'
+            },
+            res => {
+                if (res && category_id) {
+                    this.category.delete(category_id);
+                }
+            }
+        ).subscribe();
     }
 
 }
