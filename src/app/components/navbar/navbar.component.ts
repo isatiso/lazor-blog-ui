@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AccountService } from 'app/services/account.service';
+import { StorageService } from 'app/services/storage.service';
 
 @Component({
     selector: 'la-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
     }
 
     constructor(
-        public account: AccountService
+        public account: AccountService,
+        private _storage: StorageService
     ) { }
 
     @ViewChild('navbar') navbar;
@@ -29,5 +31,9 @@ export class NavbarComponent implements OnInit {
 
     log_out() {
         this.account.log_out();
+    }
+
+    clear_session_storage() {
+        this._storage.sclear();
     }
 }

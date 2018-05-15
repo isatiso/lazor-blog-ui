@@ -1,6 +1,8 @@
 @import '../../../../assets/scss/material_theming.scss';
 h1.title {
     margin-top: 1.2rem;
+    width: fit-content;
+    transition: transform 100ms ease-in-out;
 }
 
 ul.category-list {

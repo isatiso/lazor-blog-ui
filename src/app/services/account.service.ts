@@ -14,6 +14,7 @@ import { StorageService } from 'app/services/storage.service';
 })
 export class AccountService {
     current_user = new BehaviorSubject<Account>(null);
+    user_list = new BehaviorSubject<Account[]>(null);
     private _api = new LazorBlogApi();
 
     public pattern = {
@@ -39,7 +40,7 @@ export class AccountService {
 
     log_in(data) {
         data.name = data.name.trim();
-        this._http.post(this._api.user(), data).subscribe(
+        this._http.post(this._api.auth(), data).subscribe(
             res => {
                 if (!res['status']) {
                     this.current_user.next(res['data']);
@@ -58,11 +59,21 @@ export class AccountService {
     }
 
     log_out() {
-        this._http.delete(this._api.user()).subscribe(
+        this._http.delete(this._api.auth()).subscribe(
             res => {
                 this.current_user.next(null);
                 this._storage.sclear();
                 this._router.navigate(['/main/auth']);
+            });
+    }
+
+    get_user_list() {
+        this._http.get(this._api.user_list()).subscribe(
+            res => {
+                if (!res['status']) {
+                    this.user_list.next(res['data']);
+                    console.log(res['data']);
+                }
             });
     }
 

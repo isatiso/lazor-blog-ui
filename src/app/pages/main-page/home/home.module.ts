@@ -15,6 +15,7 @@ import {
 } from '@angular/material';
 
 import { HomeComponent } from './home.component';
+import { SortablejsModule } from 'angular-sortablejs/dist';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { HomeComponent } from './home.component';
         MatMenuModule,
         MatProgressSpinnerModule,
         MatDividerModule,
-        RouterModule.forChild([])
+        RouterModule.forChild([]),
+        SortablejsModule.forRoot({})
     ],
     declarations: [HomeComponent]
 })

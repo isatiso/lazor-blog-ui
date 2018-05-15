@@ -12,6 +12,8 @@ import { AboutComponent } from 'pages/main-page/about/about.component';
 import { AuthComponent } from 'app/pages/main-page/auth/auth.component';
 import { AuthGuard } from 'app/guards/auth.guard';
 import { ButlerComponent } from 'app/components/butler/butler.component';
+import { UserManagementComponent } from 'app/pages/main-page/user-management/user-management.component';
+import { SupervisorGuard } from 'app/guards/supervisor.guard';
 // import { EditorComponent } from 'app/pages/main-page/editor/editor.component';
 
 const routes: Routes = [
@@ -31,6 +33,13 @@ const routes: Routes = [
             },
             {
                 path: 'auth', component: AuthComponent,
+            },
+            {
+                path: 'user-management', component: UserManagementComponent,
+                canActivate: [SupervisorGuard],
+                children: [
+                    { path: '', component: FooterComponent, outlet: 'footer' },
+                ]
             },
             {
                 path: 'article/:id', component: ArticleComponent,

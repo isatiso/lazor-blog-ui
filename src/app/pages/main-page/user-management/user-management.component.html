@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div #topSpacer></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <mat-card>
+                <div class="container user-list">
+                    <div class="row user-item">
+                        <div class="col-lg-3">
+                            <a class=""> 昵称 </a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a class=""> 邮箱 </a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a class=""> 激活状态 </a>
+                        </div>
+                    </div>
+                    <div *ngFor="let user of account.user_list.value" class="row user-item align-items-center">
+                        <div class="col-lg-3 ">
+                            <a class="">
+                                {{ user.username }}
+                            </a>
+                        </div>
+                        <div class="col-lg-3 ">
+                            <a class="">
+                                {{ user.email }}
+                            </a>
+                        </div>
+                        <div class="col-lg-3 ">
+                            <mat-form-field class="active-status">
+                                <mat-select [(ngModel)]="user.active_status">
+                                    <mat-option [value]="1"> 已激活 </mat-option>
+                                    <mat-option [value]="0"> 未激活 </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div #bottomSpacer></div>
+    </div>
+</div>
+<router-outlet name="footer"></router-outlet>

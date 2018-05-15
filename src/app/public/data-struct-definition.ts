@@ -57,6 +57,7 @@ export class Category {
 export interface Account {
     user_id: string;
     user_name: string;
+    supervisor: number;
 }
 
 export class Options {

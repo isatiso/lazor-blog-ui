@@ -15,6 +15,8 @@ export class CategoryDataService {
     current = new BehaviorSubject<Category>(null);
     loading_articles = new BehaviorSubject<boolean>(false);
     loading_categories = new BehaviorSubject<boolean>(false);
+    push_article_order_timer = null;
+    push_category_order_timer = null;
 
     private _api = new LazorBlogApi();
 
@@ -56,7 +58,7 @@ export class CategoryDataService {
     get_categories(options?: Options) {
         // 使用缓存的版本
         options = options || new Options({});
-        const cache_info = this._storage.sread('category_list');
+        const cache_info = this._storage.sread('category-list');
         console.log(this.current.value);
 
         if (options.flush || !cache_info) {
@@ -66,7 +68,7 @@ export class CategoryDataService {
                         let data = this._assemble_data(
                             res['data']['category_list'], res['data']['order_list'], 'category_id');
                         data = data.map(item => new Category(item));
-                        this._storage.swrite('category_list', JSON.stringify(data));
+                        this._storage.swrite('category-list', JSON.stringify(data));
                         this.list.next(data);
                         if (this.current.value) {
                             this.get_articles(this.current.value);
@@ -143,5 +145,39 @@ export class CategoryDataService {
         ).subscribe(res => {
             this.get_categories(new Options({ flush: true }));
         });
+    }
+
+    push_article_order() {
+        clearTimeout(this.push_article_order_timer);
+        this.push_article_order_timer = setTimeout(() => {
+            const order_list = this.articles.value.map(item => item.article_id);
+            this._http.post('/middle/article/order', {
+                category_id: this.current.value.category_id,
+                order_list: order_list
+            }).subscribe(
+                res => { this._storage.sremove('category-' + this.current.value.category_id); });
+        }, 800);
+    }
+
+    push_category_order() {
+        clearTimeout(this.push_category_order_timer);
+        this.push_category_order_timer = setTimeout(() => {
+            const order_list = this.list.value.map(
+                item => {
+                    return item.category_id;
+                });
+            this._http.post('/middle/category/order', {
+                order_list: order_list
+            }).subscribe(
+                res => { this._storage.sremove('category-list'); });
+        }, 800);
+    }
+
+    clear_push_article_order() {
+        clearTimeout(this.push_article_order_timer);
+    }
+
+    clear_push_category_order() {
+        clearTimeout(this.push_category_order_timer);
     }
 }

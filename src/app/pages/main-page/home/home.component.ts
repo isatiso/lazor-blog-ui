@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+import { SortablejsOptions } from 'angular-sortablejs';
+
 import { CategoryDataService } from 'app/services/database/category-data.service';
 import { ButlerService } from 'services/components/butler.service';
 import { AccountService } from 'app/services/account.service';
@@ -47,6 +49,12 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
 
         //     transition('void <=> 1', animate('200ms cubic-bezier(0, 1, 1, 1)'))
         // ]),
+        trigger('sortState', [
+            state('1', style({ borderRadius: '5px', backgroundColor: '#e8eaf6' })),
+            state('0', style({ borderRadius: '0px', backgroundColor: '#ffffff' })),
+
+            transition('1 <=> 0', animate('100ms ease-in'))
+        ]),
         trigger('loadArticle', [
             state('1', style({ transform: 'translateX(0)', opacity: 1 })),
             transition('* => 1', animate('200ms cubic-bezier(0, 1, 1, 1)'))
@@ -62,6 +70,33 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
     load_article = 0;
+    toggle_state = 0;
+
+    public article_sort_options: SortablejsOptions = {
+        animation: 100,
+        disabled: true,
+        onStart: event => {
+            event.item.style.opacity = 0;
+            this.category.clear_push_article_order();
+        },
+        onEnd: event => {
+            event.item.style.opacity = 1;
+            this.category.push_article_order();
+        },
+    };
+
+    public category_sort_options: SortablejsOptions = {
+        animation: 100,
+        disabled: true,
+        onStart: event => {
+            event.item.style.opacity = 0;
+            this.category.clear_push_category_order();
+        },
+        onEnd: event => {
+            event.item.style.opacity = 1;
+            this.category.push_category_order();
+        },
+    };
 
     constructor(
         public account: AccountService,
@@ -76,6 +111,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     @ViewChild('topSpacer') top_spacer;
     @ViewChild('bottomSpacer') bottom_spacer;
+    @ViewChild('sortToggle') sort_toggle;
+
+    toggle_sort() {
+        if (this.toggle_state) {
+            this.sort_toggle.nativeElement.style.transform = '';
+            this.category.get_categories();
+            this.toggle_state = 0;
+        } else {
+            this.sort_toggle.nativeElement.style.transform = 'rotate3d(1, 0, 0, 180deg)';
+            this.toggle_state = 1;
+        }
+        this.article_sort_options = Object.assign(Object.create({}),
+            this.article_sort_options, { disabled: !this.toggle_state });
+        this.category_sort_options = Object.assign(Object.create({}),
+            this.category_sort_options, { disabled: !this.toggle_state });
+
+    }
 
     set_butler() {
         this._butler.button_list = [{

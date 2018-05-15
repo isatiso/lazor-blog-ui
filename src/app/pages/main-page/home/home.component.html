@@ -9,15 +9,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="title">Hi, {{account.current_user.value.user_name}}</h1>
+                            <h1 #sortToggle class="title" (click)="toggle_sort()">Hi, {{account.current_user.value.user_name}}</h1>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
                     <div class="row">
                         <div class="col-lg-3">
-                            <ul class="category-list">
+                            <ul class="category-list" [sortablejs]="category.list.value" [sortablejsOptions]="category_sort_options">
                                 <li *ngFor="let category of category.list.value">
-                                    <mat-card [@showOptions]="category.show_options" (click)="set_current_category(category)">
+                                    <mat-card [@showOptions]="category.show_options" (click)="set_current_category(category)" [@sortState]="toggle_state">
                                         {{ category.category_name }}
                                     </mat-card>
                                     <div class="container button-box">
@@ -44,8 +44,9 @@
                             <div class="article-title font-sub-title">
                                 Article
                             </div>
-                            <ul *ngIf="!category.loading_articles.value" class="article-list">
-                                <li *ngFor="let article of category.articles.value" class="article-item">
+                            <ul *ngIf="!category.loading_articles.value" [sortablejs]="category.articles.value" [sortablejsOptions]="article_sort_options"
+                                class="article-list">
+                                <li *ngFor="let article of category.articles.value" class="article-item" [@sortState]="toggle_state">
                                     <!-- <div class="helper"></div> -->
                                     <button class="article-name" routerLink="/main/article/{{article.article_id}}" [@loadArticle]="load_article">
                                         {{ article.title }}

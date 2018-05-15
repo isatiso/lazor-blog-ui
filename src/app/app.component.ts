@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { AccountService } from 'app/services/account.service';
 import { BosskeyService } from 'app/services/bosskey.service';
+import { StorageService } from 'app/services/storage.service';
 
 declare var anime: any;
 
@@ -19,11 +20,13 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     constructor(
         public bosskey: BosskeyService,
-        private _account: AccountService
+        private _account: AccountService,
+        private _storage: StorageService
     ) { }
 
     ngOnInit() {
         this._account.update_user_info();
+        this._storage.sclear();
         anime.timeline({
             targets: ['#loading-wrapper', '#cover-background'],
             opacity: 0,

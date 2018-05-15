@@ -31,6 +31,13 @@
             <button mat-menu-item *ngIf="!account.current_user.value" routerLink="/main/auth" class="nav-menu">
                 <span>登录</span>
             </button>
+            <button mat-menu-item *ngIf="account.current_user.value && account.current_user.value.supervisor" routerLink="/main/user-management"
+                class="nav-menu">
+                <span>用户管理</span>
+            </button>
+            <button mat-menu-item *ngIf="account.current_user.value" (click)="clear_session_storage()" class="nav-menu">
+                <span>清除缓存</span>
+            </button>
             <button mat-menu-item *ngIf="account.current_user.value" (click)="log_out()" class="nav-menu">
                 <span>安全退出</span>
             </button>
