@@ -15,8 +15,6 @@ export class CategoryDataService {
     current = new BehaviorSubject<Category>(null);
     loading_articles = new BehaviorSubject<boolean>(false);
     loading_categories = new BehaviorSubject<boolean>(false);
-    push_article_order_timer = null;
-    push_category_order_timer = null;
 
     private _api = new LazorBlogApi();
 
@@ -148,36 +146,22 @@ export class CategoryDataService {
     }
 
     push_article_order() {
-        clearTimeout(this.push_article_order_timer);
-        this.push_article_order_timer = setTimeout(() => {
-            const order_list = this.articles.value.map(item => item.article_id);
-            this._http.post('/middle/article/order', {
-                category_id: this.current.value.category_id,
-                order_list: order_list
-            }).subscribe(
-                res => { this._storage.sremove('category-' + this.current.value.category_id); });
-        }, 800);
+        const order_list = this.articles.value.map(item => item.article_id);
+        this._http.post('/middle/article/order', {
+            category_id: this.current.value.category_id,
+            order_list: order_list
+        }).subscribe(
+            res => {
+                this._storage.sremove('category-' + this.current.value.category_id);
+            });
     }
 
     push_category_order() {
-        clearTimeout(this.push_category_order_timer);
-        this.push_category_order_timer = setTimeout(() => {
-            const order_list = this.list.value.map(
-                item => {
-                    return item.category_id;
-                });
-            this._http.post('/middle/category/order', {
-                order_list: order_list
-            }).subscribe(
-                res => { this._storage.sremove('category-list'); });
-        }, 800);
+        const order_list = this.list.value.map(item => item.category_id);
+        this._http.post('/middle/category/order', {
+            order_list: order_list
+        }).subscribe(
+            res => { this._storage.sremove('category-list'); });
     }
 
-    clear_push_article_order() {
-        clearTimeout(this.push_article_order_timer);
-    }
-
-    clear_push_category_order() {
-        clearTimeout(this.push_category_order_timer);
-    }
 }

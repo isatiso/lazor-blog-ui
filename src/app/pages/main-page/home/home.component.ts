@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ViewChildren } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { SortablejsOptions } from 'angular-sortablejs';
@@ -53,12 +53,13 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
             state('1', style({ borderRadius: '5px', backgroundColor: '#e8eaf6' })),
             state('0', style({ borderRadius: '0px', backgroundColor: '#ffffff' })),
 
-            transition('1 <=> 0', animate('100ms ease-in'))
+            transition('1 => 0', animate('100ms ease-in')),
+            transition('* => 1', animate('100ms ease-in'))
         ]),
-        trigger('loadArticle', [
-            state('1', style({ transform: 'translateX(0)', opacity: 1 })),
-            transition('* => 1', animate('200ms cubic-bezier(0, 1, 1, 1)'))
-        ]),
+        // trigger('loadArticle', [
+        //     state('1', style({ transform: 'translateX(0)', opacity: 1 })),
+        //     transition('* => 1', animate('200ms cubic-bezier(0, 1, 1, 1)'))
+        // ]),
         trigger('showOptions', [
             state('options', style({ transform: 'translateX(-45%)', })),
             state('current', style({ transform: 'translateX(-5%)', })),
@@ -70,14 +71,12 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
     load_article = 0;
-    toggle_state = 0;
 
     public article_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: true,
+        disabled: false,
         onStart: event => {
             event.item.style.opacity = 0;
-            this.category.clear_push_article_order();
         },
         onEnd: event => {
             event.item.style.opacity = 1;
@@ -87,14 +86,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public category_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: true,
+        disabled: false,
         onStart: event => {
             event.item.style.opacity = 0;
-            this.category.clear_push_category_order();
         },
         onEnd: event => {
             event.item.style.opacity = 1;
             this.category.push_category_order();
+            this.load_article = 1;
         },
     };
 
@@ -111,23 +110,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     @ViewChild('topSpacer') top_spacer;
     @ViewChild('bottomSpacer') bottom_spacer;
-    @ViewChild('sortToggle') sort_toggle;
-
-    toggle_sort() {
-        if (this.toggle_state) {
-            this.sort_toggle.nativeElement.style.transform = '';
-            this.category.get_categories();
-            this.toggle_state = 0;
-        } else {
-            this.sort_toggle.nativeElement.style.transform = 'rotate3d(1, 0, 0, 180deg)';
-            this.toggle_state = 1;
-        }
-        this.article_sort_options = Object.assign(Object.create({}),
-            this.article_sort_options, { disabled: !this.toggle_state });
-        this.category_sort_options = Object.assign(Object.create({}),
-            this.category_sort_options, { disabled: !this.toggle_state });
-
-    }
 
     set_butler() {
         this._butler.button_list = [{
@@ -179,23 +161,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    show_options(category) {
-        let res = '';
-        if (!this.is_current(category)) {
-            res = 'none';
-        } else if (category.show_options) {
-            res = 'options';
-        } else {
-            res = 'current';
-        }
-        return res;
-    }
-
     is_current(category) {
         return this.category.is_current(category);
     }
 
     set_current_category(category) {
+        console.log(category);
+        console.log(this.category.current.value);
         const status = category.show_options;
         for (const cate of this.category.list.value) {
             cate.show_options = 'none';
