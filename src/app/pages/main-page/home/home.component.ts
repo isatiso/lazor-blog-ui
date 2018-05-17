@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { NoticeService } from 'app/services/notice.service';
 import { ArticleDataService } from 'app/services/database/article-data.service';
 
+declare var Sortable: any;
+
 @Component({
     selector: 'la-home',
     templateUrl: './home.component.html',
@@ -49,12 +51,17 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
 
         //     transition('void <=> 1', animate('200ms cubic-bezier(0, 1, 1, 1)'))
         // ]),
-        trigger('sortState', [
-            state('1', style({ borderRadius: '5px', backgroundColor: '#e8eaf6' })),
+        trigger('cateSortState', [
+            state('1', style({ borderRadius: '5px', backgroundColor: '#e0f7fa' })),
+            state('0', style({ borderRadius: '0px', backgroundColor: '#fafafa' })),
+
+            transition('1 <=> 0', animate('200ms ease-in'))
+        ]),
+        trigger('artSortState', [
+            state('1', style({ borderRadius: '5px', backgroundColor: '#e0f7fa' })),
             state('0', style({ borderRadius: '0px', backgroundColor: '#ffffff' })),
 
-            transition('1 => 0', animate('100ms ease-in')),
-            transition('* => 1', animate('100ms ease-in'))
+            transition('1 <=> 0', animate('200ms ease-in'))
         ]),
         // trigger('loadArticle', [
         //     state('1', style({ transform: 'translateX(0)', opacity: 1 })),
@@ -71,10 +78,11 @@ import { ArticleDataService } from 'app/services/database/article-data.service';
 export class HomeComponent implements OnInit, OnDestroy {
 
     load_article = 0;
+    toggle_state = 0;
 
     public article_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: false,
+        disabled: true,
         onStart: event => {
             event.item.style.opacity = 0;
         },
@@ -86,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public category_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: false,
+        disabled: true,
         onStart: event => {
             event.item.style.opacity = 0;
         },
@@ -132,12 +140,29 @@ export class HomeComponent implements OnInit, OnDestroy {
         }];
     }
 
+    toggle_sort() {
+
+        if (this.toggle_state) {
+            this.toggle_state = 0;
+        } else {
+            this.toggle_state = 1;
+        }
+
+        this.article_sort_options = Object.assign(Object.create({}),
+            this.article_sort_options, { disabled: !this.toggle_state });
+        this.category_sort_options = Object.assign(Object.create({}),
+            this.category_sort_options, { disabled: !this.toggle_state });
+    }
+
     ngOnInit() {
+        // const sortable = Sortable.create('#article-list', this.article_sort_options);
         document.body.style.backgroundColor = '#f0f0f0';
         this.category.get_categories();
         this.top_spacer.nativeElement.style.height = '3rem';
         this.bottom_spacer.nativeElement.style.height = '3rem';
-        setTimeout(() => { this.load_article = 1; }, 0);
+        setTimeout(() => {
+            this.load_article = 1;
+        }, 0);
         this.set_butler();
     }
 
@@ -166,8 +191,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     set_current_category(category) {
-        console.log(category);
-        console.log(this.category.current.value);
         const status = category.show_options;
         for (const cate of this.category.list.value) {
             cate.show_options = 'none';

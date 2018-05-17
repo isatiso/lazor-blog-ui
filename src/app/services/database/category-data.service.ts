@@ -4,6 +4,7 @@ import { LazorBlogApi } from 'app/public/api-definition';
 import { Category, ArticleData, Options } from 'app/public/data-struct-definition';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from 'app/services/storage.service';
+import { AccountService } from 'app/services/account.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,7 @@ export class CategoryDataService {
 
     constructor(
         private _http: HttpClient,
+        private _account: AccountService,
         private _storage: StorageService
     ) { }
 
@@ -60,7 +62,7 @@ export class CategoryDataService {
         console.log(this.current.value);
 
         if (options.flush || !cache_info) {
-            this._http.get(this._api.category()).subscribe(
+            this._http.get(this._api.category(), { params: { user_id: this._account.current_user.value.user_id } }).subscribe(
                 res => {
                     if (res['data']) {
                         let data = this._assemble_data(

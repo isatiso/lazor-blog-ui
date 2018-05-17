@@ -16,11 +16,11 @@ const routes: Routes = [
                 component: BannerComponent,
                 outlet: 'banner'
             },
-            // {
-            //     path: '',
-            //     component: FooterComponent,
-            //     outlet: 'footer'
-            // }
+            {
+                path: '',
+                component: FooterComponent,
+                outlet: 'footer'
+            }
         ]
     }
 ];

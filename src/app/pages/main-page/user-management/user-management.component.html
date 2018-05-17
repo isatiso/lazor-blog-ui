@@ -19,7 +19,7 @@
                     </div>
                     <div *ngFor="let user of account.user_list.value" class="row user-item align-items-center">
                         <div class="col-lg-3 ">
-                            <a class="">
+                            <a class="" routerLink="/main/user/{{user.user_id}}">
                                 {{ user.username }}
                             </a>
                         </div>

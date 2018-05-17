@@ -27,9 +27,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     public action = Object.assign(Object.create(null), {
         self: this,
-        go_editor: (event?) => {
-            this._router.navigate(['/editor/' + this.current]);
-        },
         go_top: (event?) => {
             this._scrollor.goto_top();
         },
@@ -45,18 +42,12 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.bosskey.cover({
             ArrowUp: this.action.go_top,
             ArrowDown: this.action.go_bottom,
-            e: this.action.go_editor,
             0: this.action.go_home,
         });
     }
 
     set_butler() {
         this._butler.button_list = [{
-            name: 'navEditor',
-            icon: () => 'mode_edit',
-            callback: event => this.action.go_editor(event),
-            tool_tip: () => '编辑文章 (ctrl + E)',
-        }, {
             name: 'navTop',
             icon: () => 'arrow_upward',
             callback: event => this._scrollor.goto_top(event),

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div #topSpacer></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <mat-card>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="title">{{ user_data.current_user.value.user_name }}</h1>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <ul class="category-list">
+                                <li *ngFor="let category of user_category.categories.value">
+                                    <mat-card (click)="set_current_category(category)">
+                                        {{ category.category_name }}
+                                    </mat-card>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="article-title font-sub-title">
+                                {{ user_category.current.value.category_name}}
+                            </div>
+                            <ul *ngIf="!category.loading_articles.value" class="article-list">
+                                <li *ngFor="let article of user_category.articles.value" class="article-item">
+                                    <button class="article-name" routerLink="/main/article/{{article.article_id}}">
+                                        {{ article.title }}
+                                    </button>
+                                    <span class="spacer"></span>
+                                </li>
+                            </ul>
+                            <div *ngIf="category.loading_articles.value" class="spinner-container">
+                                <mat-spinner strokeWidth="5" diameter="50" class="spinner-item"></mat-spinner>
+                                <div class="spinner-text">加载中...</div>
+                            </div>
+                            <div class="no-article font-sub-title" *ngIf="!articles_num">
+                                <div class="no-article-item">
+                                    当前分类还没有添加文章
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div #bottomSpacer></div>
+    </div>
+</div>
+
+<router-outlet name="footer"></router-outlet>

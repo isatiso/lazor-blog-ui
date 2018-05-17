@@ -72,7 +72,6 @@ export class AccountService {
             res => {
                 if (!res['status']) {
                     this.user_list.next(res['data']);
-                    console.log(res['data']);
                 }
             });
     }

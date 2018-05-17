@@ -13,6 +13,7 @@ import { AboutModule } from 'pages/main-page/about/about.module';
 import { AuthModule } from 'pages/main-page/auth/auth.module';
 import { ButlerModule } from 'app/components/butler/butler.module';
 import { UserManagementModule } from 'app/pages/main-page/user-management/user-management.module';
+import { UserModule } from 'app/pages/main-page/user/user.module';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { UserManagementModule } from 'app/pages/main-page/user-management/user-m
         ArticleModule,
         AboutModule,
         AuthModule,
+        UserModule,
         UserManagementModule,
         NavbarModule,
         ContentModule,

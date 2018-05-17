@@ -1,5 +1,17 @@
 <router-outlet name="banner"></router-outlet>
-<!-- <div class="container">
+<div class="container">
+    <div class="row my-divider"> </div>
+    <div class="row align-items-center">
+        <div class="col-lg-12">
+            <h1>最近更新</h1>
+            <ul>
+                <li *ngFor="let article of articles">{{article.name}}</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row my-divider"> </div>
     <div class="row align-items-center">
         <mat-card class="col-lg-5">
             <img class="only-image img-fluid" src="assets/image/tran-20160731.13.jpg" alt="" />
@@ -10,9 +22,7 @@
             <p class="lead">因为服务器是一个 1 核 1 G 1 M 的超低配置腾讯云（怎么全是 1 (ಠ╭╮ಠ) ），所以。。。如果大家愿意赞助我的话，我是很愿意升级配置的 ヽ(•ω•ゞ)</p>
         </div>
     </div>
-
-    <div class="row my-divider"> </div>
-    <div class="row align-items-center">
+    <!-- <div class="row align-items-center">
         <div class="col-lg-7">
             <h2>为什么这么慢？</h2>
             <br>
@@ -46,8 +56,8 @@
             <img class="only-image img-fluid" src="assets/image/tran-20160731.94.jpg" alt="" />
         </mat-card>
     </div>
-    <div class="row my-divider"></div>
-</div> -->
+    <div class="row my-divider"></div> -->
+</div>
 <!-- <div class="container">
     <div class="row align-items-center">
         <div class="col-lg-5">

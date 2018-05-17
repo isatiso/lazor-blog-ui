@@ -4,19 +4,12 @@
     background-color: map-get($primary, 400);
     background-blend-mode: color-burn;
     color: white;
-    height: 100%;
     margin-bottom: 0;
     h1 {
         outline: none;
         font-family: $font-banner;
         cursor: pointer;
-        font-size: 6rem;
-        font-weight: 500;
         margin-bottom: 15px;
-    }
-    p {
-        height: 5rem;
-        font-size: 2rem;
     }
 }
 
@@ -30,13 +23,13 @@
 }
 
 .welcome-height {
-    max-height: 32rem;
+    max-height: 16rem;
 }
 
 .welcome-position {
     position: absolute;
-    top: 7rem;
-    right: -2rem;
+    top: 4rem;
+    right: 0rem;
 }
 
 .welcome-anime {
