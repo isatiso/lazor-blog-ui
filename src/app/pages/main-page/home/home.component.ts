@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public article_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: true,
+        disabled: false,
         onStart: event => {
             event.item.style.opacity = 0;
         },
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     public category_sort_options: SortablejsOptions = {
         animation: 100,
-        disabled: true,
+        disabled: false,
         onStart: event => {
             event.item.style.opacity = 0;
         },
