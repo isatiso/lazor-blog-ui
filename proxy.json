@@ -1,5 +1,8 @@
 {
     "/middle": {
         "target": "http://123.207.229.128:8546"
+    },
+    "/lazor-server.js": {
+        "target": "http://lazor.cn/"
     }
 }

@@ -1,7 +1,7 @@
 @import '../../../assets/scss/material_theming.scss';
 .banner {
     background-image: url(/assets/image/pw_maze_white.png);
-    background-color: map-get($primary, 400);
+    background-color: $primary-color;
     background-blend-mode: color-burn;
     color: white;
     margin-bottom: 0;

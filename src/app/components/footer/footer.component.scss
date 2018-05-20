@@ -1,11 +1,15 @@
 @import '../../../assets/scss/material_theming.scss';
+.spacer {
+    height: 1rem;
+}
+
 .footer {
     background-image: url(/assets/image/pw_maze_white.png);
-    background-color: map-get($primary, 400); 
+    background-color: $primary-color;
     background-blend-mode: color-burn;
     color: #fff;
     .footer-items {
-        height: 8rem;
+        height: 6rem;
         a {
             color: #fff;
         }

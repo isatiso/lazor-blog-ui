@@ -27,6 +27,19 @@ export class AppComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this._account.update_user_info();
         this._storage.sclear();
+
+        if ('serviceWorker' in navigator && 'PushManager' in window) {
+            navigator.serviceWorker.register(
+                'lazor-server.js', {
+                    scope: '/'
+                }).then(
+                    registration => {
+                        return true;
+                    }).catch(
+                        error => { }
+                    );
+        }
+
         anime.timeline({
             targets: ['#loading-wrapper', '#cover-background'],
             opacity: 0,

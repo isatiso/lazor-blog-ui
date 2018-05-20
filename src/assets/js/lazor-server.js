@@ -1,5 +1,5 @@
 var showNotification = true;
-var VERSION = '2.0.5';
+var VERSION = '2.0.6';
 var NEED_CACHE = false;
 
 self.addEventListener('install', function(event) {
@@ -80,6 +80,13 @@ self.addEventListener('fetch', event => {
         case 'inner':
             let res_data = {};
             switch (fragement[1]) {
+                case 'get-version':
+                    event.respondWith(
+                        new Response(JSON.stringify({ version: VERSION }), {
+                            headers: { 'Content-type': 'application/json' }
+                        }));
+
+                    break;
                 case 'callnotification':
                     if (showNotification) {
                         event.respondWith(
