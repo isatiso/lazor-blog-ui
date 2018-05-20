@@ -1,5 +1,39 @@
 <!-- <router-outlet name="navbar"></router-outlet> -->
 
 <router-outlet name="butler"></router-outlet>
-<router-outlet name="content"></router-outlet>
+<div class="container">
+    <div class="row">
+        <div #topSpacer></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12" *ngIf="!article.loading_content.value">
+            <h1 class="title">
+                {{ title }}
+            </h1>
+            <div class="container">
+                <div class="row article-info">
+                    <div class="col-lg-4 lead">
+                        {{ author.username }} / {{ category.category_name }}
+                    </div>
+                    <div class="col-lg-4 lead">
+                        发布时间：{{ create_time | date: 'y年MM月dd日'}}
+                    </div>
+                    <div class="col-lg-4 lead">
+                        最后更新：{{ update_time | date: 'y年MM月dd日' }}
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <markdown class="markdown-container" [data]="content" [renderLatex]="renderLatex">
+
+            </markdown>
+        </div>
+        <div class="col-lg-12" *ngIf="article.loading_content.value">
+            <div class="spinner-container">
+                <mat-spinner strokeWidth="5" diameter="50" class="spinner-item"></mat-spinner>
+                <div class="spinner-text">加载中...</div>
+            </div>
+        </div>
+    </div>
+</div>
 <router-outlet name="footer"></router-outlet>

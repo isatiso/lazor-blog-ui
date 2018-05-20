@@ -247,7 +247,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             }]
         }, data => {
             if (!data) { return; }
-            console.log(data);
             this.category.modify(category.category_id, data.category_name.value);
         }).subscribe();
     }

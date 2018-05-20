@@ -17,7 +17,6 @@ export class AboutComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        console.log('about');
         this._content.title.next('关于 Lazor Blog');
         this._content.content.next(this.about_content.content);
     }

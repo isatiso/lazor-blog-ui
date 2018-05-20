@@ -1,20 +1,29 @@
 <router-outlet name="banner"></router-outlet>
 <div class="container">
     <div class="row my-divider"> </div>
-    <div class="row align-items-center">
-        <div class="col-lg-12">
-            <h1>最近更新</h1>
-            <ul>
-                <li *ngFor="let article of articles">{{article.name}}</li>
-            </ul>
+    <div class="row align-items-start">
+        <div class="col-lg-6">
+            <div class="article-list">
+                <h1>最近更新</h1>
+                <div class="article-item" *ngFor="let article of article_list">
+                    <button class="article-name" routerLink="/main/article/{{ article.article_id }}">{{ article.title }}</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="category-list">
+                <h1>所有分类</h1>
+                <div class="category-item" *ngFor="let category of category_list">
+                    <button class="category-name" routerLink="/main/category/{{ category.category_id }}">{{ category.category_name }}</button>
+                </div>
+            </div>
         </div>
     </div>
-
 
     <div class="row my-divider"> </div>
     <div class="row align-items-center">
         <mat-card class="col-lg-5">
-            <img class="only-image img-fluid" src="assets/image/tran-20160731.13.jpg" alt="" />
+            <img class="only-image img-fluid" src="/assets/image/tran-20160731.13.jpg" alt="" />
         </mat-card>
         <div class="col-lg-7">
             <h2>为什么这么慢？</h2>
@@ -22,6 +31,7 @@
             <p class="lead">因为服务器是一个 1 核 1 G 1 M 的超低配置腾讯云（怎么全是 1 (ಠ╭╮ಠ) ），所以。。。如果大家愿意赞助我的话，我是很愿意升级配置的 ヽ(•ω•ゞ)</p>
         </div>
     </div>
+    <div class="row my-divider"> </div>
     <!-- <div class="row align-items-center">
         <div class="col-lg-7">
             <h2>为什么这么慢？</h2>

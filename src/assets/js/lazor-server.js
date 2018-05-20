@@ -1,13 +1,13 @@
 var showNotification = true;
-var VERSION = '1.4.11';
+var VERSION = '2.0.5';
 var NEED_CACHE = false;
 
-self.addEventListener('install', function (event) {
+self.addEventListener('install', function(event) {
     self.skipWaiting();
     console.log(self);
 });
 
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', function(event) {
     self.skipWaiting();
     // const publicKey = 'BGQA2WKutj-hCwIWzS576InMsfDPVSDKk-dQENMqykDe-UDKdNYuSBvoTEWmbpzRvrrcYZxKI5LuBZutAfo8OTo';
     // const applicationServerKey = urlB64ToUint8Array(publicKey);
@@ -19,7 +19,7 @@ self.addEventListener('activate', function (event) {
     console.log('Activate event:', event);
 });
 
-self.addEventListener('push', function (event) {
+self.addEventListener('push', function(event) {
     console.log('Push event:', event);
     console.log(self);
     const options = {
@@ -52,7 +52,7 @@ self.addEventListener('fetch', event => {
 
     if (NEED_CACHE && (br = bundle_regex.exec(this_url.pathname))) {
         let cache_name;
-        event.respondWith(async function () {
+        event.respondWith(async function() {
             if ((br = forever_regex.exec(this_url.pathname))) {
                 cache_name = 'forever';
             } else {
@@ -65,8 +65,8 @@ self.addEventListener('fetch', event => {
             }
 
             return fetch(event.request).then(
-                function (r) {
-                    caches.open(cache_name).then(function (cache) {
+                function(r) {
+                    caches.open(cache_name).then(function(cache) {
                         cache.put(event.request, r);
                     });
                     return r.clone();
@@ -136,7 +136,7 @@ self.addEventListener('fetch', event => {
     }
 });
 
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener('notificationclick', function(event) {
     console.log('[Service Worker] Notification click Received.', event);
 
     event.notification.close();

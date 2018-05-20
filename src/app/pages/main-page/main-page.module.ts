@@ -13,7 +13,8 @@ import { AboutModule } from 'pages/main-page/about/about.module';
 import { AuthModule } from 'pages/main-page/auth/auth.module';
 import { ButlerModule } from 'app/components/butler/butler.module';
 import { UserManagementModule } from 'app/pages/main-page/user-management/user-management.module';
-import { UserModule } from 'app/pages/main-page/user/user.module';
+import { CategoryModule } from 'app/pages/main-page/category/category.module';
+
 
 @NgModule({
     imports: [
@@ -23,11 +24,11 @@ import { UserModule } from 'app/pages/main-page/user/user.module';
         ArticleModule,
         AboutModule,
         AuthModule,
-        UserModule,
         UserManagementModule,
         NavbarModule,
         ContentModule,
         ButlerModule,
+        CategoryModule,
         FooterModule
     ],
     declarations: [MainPageComponent]

@@ -8,6 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class ContentService {
     title = new BehaviorSubject<string>('');
     content = new BehaviorSubject<string>('');
+    create_time = new BehaviorSubject<number>(0);
+    update_time = new BehaviorSubject<number>(0);
 
     constructor() {
 

@@ -12,7 +12,6 @@ export class BannerComponent implements OnInit {
 
     @ViewChild('holder') holder;
     ngOnInit() {
-        this.holder.nativeElement.style.height = window.innerHeight * 0.2 + 'px';
     }
 
     go_home() {

@@ -14,7 +14,7 @@ import { AuthGuard } from 'app/guards/auth.guard';
 import { ButlerComponent } from 'app/components/butler/butler.component';
 import { UserManagementComponent } from 'app/pages/main-page/user-management/user-management.component';
 import { SupervisorGuard } from 'app/guards/supervisor.guard';
-import { UserComponent } from 'app/pages/main-page/user/user.component';
+import { CategoryComponent } from 'app/pages/main-page/category/category.component';
 // import { EditorComponent } from 'app/pages/main-page/editor/editor.component';
 
 const routes: Routes = [
@@ -33,13 +33,6 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'user/:id', component: UserComponent,
-                // children: [
-                //     { path: '', component: ButlerComponent, outlet: 'butler' },
-                //     { path: '', component: FooterComponent, outlet: 'footer' },
-                // ]
-            },
-            {
                 path: 'auth', component: AuthComponent,
             },
             {
@@ -54,6 +47,13 @@ const routes: Routes = [
                 children: [
                     { path: '', component: ButlerComponent, outlet: 'butler' },
                     { path: '', component: ContentComponent, outlet: 'content' },
+                    { path: '', component: FooterComponent, outlet: 'footer' },
+                ]
+            },
+            {
+                path: 'category/:id', component: CategoryComponent,
+                children: [
+                    { path: '', component: ButlerComponent, outlet: 'butler' },
                     { path: '', component: FooterComponent, outlet: 'footer' },
                 ]
             },

@@ -33,7 +33,6 @@ export class ButlerComponent implements OnInit {
             this.menu_anime_handler = null;
             if (value) { this.expand_width = value.length * 64 + 48 + 'px'; }
         });
-        console.log(this.nav_options);
     }
 
     private _init_anime() {

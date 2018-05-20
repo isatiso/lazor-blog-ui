@@ -35,7 +35,6 @@ export class UserService {
             res => {
                 if (!res['status']) {
                     this.current_user.next(res['data']);
-                    console.log(res['data']);
                 }
             });
     }

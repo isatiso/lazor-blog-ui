@@ -5,9 +5,12 @@ export class LazorBlogApi {
     user_password() { return '/middle/user/password'; }
     user_list() { return '/middle/user_list'; }
     category() { return '/middle/category'; }
+    category_info() { return '/middle/category/info'; }
+    category_index() { return '/middle/category/index'; }
     category_order() { return '/middle/category/order'; }
     article() { return '/middle/article'; }
     article_list() { return '/middle/article/list'; }
+    article_relative() { return '/middle/article/relative'; }
     article_latest() { return '/middle/article/latest'; }
     article_order() { return '/middle/article/order'; }
     guard_auth() { return '/middle/guard/auth'; }

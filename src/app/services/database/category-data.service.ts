@@ -59,7 +59,6 @@ export class CategoryDataService {
         // 使用缓存的版本
         options = options || new Options({});
         const cache_info = this._storage.sread('category-list');
-        console.log(this.current.value);
 
         if (options.flush || !cache_info) {
             this._http.get(this._api.category(), { params: { user_id: this._account.current_user.value.user_id } }).subscribe(
