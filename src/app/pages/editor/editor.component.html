@@ -6,14 +6,17 @@
                 <input [(ngModel)]="title" maxlength="40" />
             </div>
             <nav class="navbar">
-                <div class="navbar-nav text-left">
-                    <button mat-button routerLink="/main/home" class="nav-item">回主页</button>
+                <div class="navbar-nav">
+                    <button mat-button routerLink="/main/home" class="nav-item" matTooltip="主页"><mat-icon>home</mat-icon></button>
                 </div>
-                <div class="navbar-nav text-right">
-                    <button mat-button (click)="go_article()" class="nav-item">查看文章</button>
+                <div class="navbar-nav">
+                    <button mat-button (click)="go_article()" class="nav-item" matTooltip="预览"><mat-icon>visibility</mat-icon></button>
                 </div>
-                <div class="navbar-nav text-right">
-                    <button mat-button (click)="save_article()" class="nav-item">保存</button>
+                <div class="navbar-nav">
+                    <button mat-button (click)="save_article()" class="nav-item" matTooltip="保存"><mat-icon>save_alt</mat-icon></button>
+                </div>
+                <div class="navbar-nav">
+                    <button mat-button (click)="click_upload_button()" class="nav-item" matTooltip="图片"><mat-icon>photo</mat-icon></button>
                 </div>
                 <div class="navbar-nav flex-grow-1"></div>
                 <div class="navbar-nav text-right">
@@ -44,3 +47,10 @@
     </div>
 </div>
 <router-outlet name="footer"></router-outlet>
+
+<form class="add-image-form" action="" method="post" enctype="multipart/form-data" #imageForm style="display:none">
+    <label for="image_uploads">Choose file to upload</label>
+    <input type="file" accept="image/*" id="image_uploads" name="file" multiple #imageUpload (change)="upload_file($event)" />
+    <input type="text" name="image_type" value="image" />
+    <input type="submit" value="Save" (click)="upload_file($event)" />
+</form>

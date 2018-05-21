@@ -1,5 +1,5 @@
 var showNotification = true;
-var VERSION = '2.0.7';
+var VERSION = '2.1.1';
 var NEED_CACHE = false;
 
 self.addEventListener('install', function(event) {

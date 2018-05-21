@@ -11,7 +11,7 @@ import * as loadLanguages from 'prismjs/components/index';
 import * as platform from 'platform';
 
 declare var Prism: any;
-loadLanguages(['python', 'c', 'cpp', 'csharp', 'css', 'javascript', 'perl', 'php', 'sass', 'scss', 'typescript']);
+loadLanguages(['python', 'c', 'cpp', 'csharp', 'css', 'javascript', 'perl', 'php', 'sass', 'scss', 'typescript', 'go']);
 
 Prism.languages.python = {
     'triple-quoted-string': {
