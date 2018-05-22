@@ -44,10 +44,7 @@ export class AccountService {
             res => {
                 if (!res['status']) {
                     this.current_user.next(res['data']);
-                    this._route.queryParams.subscribe(
-                        params => {
-                            this._router.navigate([params['backurl'] || '/main/home']);
-                        });
+                    this._router.navigate([this._route.snapshot.queryParams['backurl'] || '/main/home']);
                 } else if (res['status'] === 3002) {
                     this._notice.bar('Inactivated account, connect author to active your account.', 'OK');
                     return false;

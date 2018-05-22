@@ -20,9 +20,6 @@ export class AuthComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this._account.current_user.subscribe(value => {
-            if (value) { this._router.navigate(['/main/home']); }
-        });
     }
 
     sign_in(event) {

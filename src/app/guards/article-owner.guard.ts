@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, NavigationExtras } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AccountService } from 'app/services/account.service';
 import { HttpClient } from '@angular/common/http';
@@ -27,7 +27,10 @@ export class ArticleOwnerGuard implements CanActivate {
                 if (data['status'] === 3005) {
                     const message = '请登陆后进行编辑。';
                     this._notice.bar(message, 'OK');
-                    this._router.navigate(['/main/auth']);
+                    const params: NavigationExtras = {
+                        queryParams: { 'backurl': state.url },
+                    };
+                    this._router.navigate(['/main/auth'], params);
                     return false;
                 } else if (data['status'] === 4005) {
                     const message = '这是别人的文章 ~_~ |||';
@@ -43,7 +46,7 @@ export class ArticleOwnerGuard implements CanActivate {
             },
         ).catch(
             error => {
-                this._router.navigate(['/auth']);
+                this._router.navigate(['/main/auth']);
                 // this._account.data = null;
                 window.localStorage.setItem('user_name', null);
                 return new Observable<boolean>();

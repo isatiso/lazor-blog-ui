@@ -15,6 +15,7 @@ import { ButlerComponent } from 'app/components/butler/butler.component';
 import { UserManagementComponent } from 'app/pages/main-page/user-management/user-management.component';
 import { SupervisorGuard } from 'app/guards/supervisor.guard';
 import { CategoryComponent } from 'app/pages/main-page/category/category.component';
+import { AlreadyAuthGuard } from 'app/guards/already-auth.guard';
 // import { EditorComponent } from 'app/pages/main-page/editor/editor.component';
 
 const routes: Routes = [
@@ -33,7 +34,9 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'auth', component: AuthComponent,
+                path: 'auth',
+                canActivate: [AlreadyAuthGuard],
+                component: AuthComponent,
             },
             {
                 path: 'user-management', component: UserManagementComponent,
