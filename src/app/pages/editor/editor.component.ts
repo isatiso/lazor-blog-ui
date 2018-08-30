@@ -23,7 +23,8 @@ export class EditorComponent implements OnInit {
         title: '',
         content: '',
         category_id: '',
-        article_id: ''
+        article_id: '',
+        publish_status: 0
     };
 
     @ViewChild('editor') editor;
@@ -43,6 +44,15 @@ export class EditorComponent implements OnInit {
 
     get content() {
         return this.current_data.content;
+    }
+
+    get publish_msg() {
+        if (this.current_data.publish_status === 1) {
+            return '撤销发布';
+        } else {
+            return '发布';
+        }
+
     }
 
     set content(value) {
@@ -95,6 +105,15 @@ export class EditorComponent implements OnInit {
         }
     }
 
+    publish_article() {
+        if (this.current_data.publish_status === 1) {
+            this.current_data.publish_status = 0;
+        } else {
+            this.current_data.publish_status = 1;
+        }
+        this._article.publish(this.current_data);
+    }
+
     click_upload_button(event?) {
         this.image_upload.nativeElement.click();
         return false;
@@ -119,6 +138,7 @@ export class EditorComponent implements OnInit {
                 this.current_data.title = value.title;
                 this.current_data.content = value.content;
                 this.current_data.category_id = value.category_id;
+                this.current_data.publish_status = value.publish_status;
                 this.render_latex++;
             });
     }

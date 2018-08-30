@@ -4,11 +4,11 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build -aot && gulp",
+        "build": "ng build --aot && gulp",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "aot": "ng build -aot && gulp",
+        "aot": "ng build --aot && gulp",
         "c": "ng g c --style=scss",
         "m": "ng g m --routing",
         "s": "ng g s",

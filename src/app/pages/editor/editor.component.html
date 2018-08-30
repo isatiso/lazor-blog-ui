@@ -13,10 +13,13 @@
                     <button mat-button (click)="go_article()" class="nav-item" matTooltip="预览"><mat-icon>visibility</mat-icon></button>
                 </div>
                 <div class="navbar-nav">
-                    <button mat-button (click)="save_article()" class="nav-item" matTooltip="保存"><mat-icon>save_alt</mat-icon></button>
+                    <button mat-button (click)="save_article()" class="nav-item" matTooltip="保存"><mat-icon>save</mat-icon></button>
                 </div>
                 <div class="navbar-nav">
                     <button mat-button (click)="click_upload_button()" class="nav-item" matTooltip="图片"><mat-icon>photo</mat-icon></button>
+                </div>
+                <div class="navbar-nav">
+                    <button mat-button (click)="publish_article()" class="nav-item" matTooltip="{{publish_msg}}"><mat-icon>publish</mat-icon></button>
                 </div>
                 <div class="navbar-nav flex-grow-1"></div>
                 <div class="navbar-nav text-right">

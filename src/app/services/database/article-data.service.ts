@@ -84,6 +84,22 @@ export class ArticleDataService {
             });
     }
 
+    publish(source) {
+        this._http.post('/middle/article/publish', {
+            article_id: source.article_id,
+            publish_status: source.publish_status
+        }).subscribe(
+            res => {
+                if (!res['status']) {
+                    // this._storage.swrite(`article-${res['data']['article_id']}`, JSON.stringify(res['data']));
+                    this._storage.sclear();
+                    this._notice.bar('Publish/Unpublish Article Successfully.', 'OK', null);
+                    this._category.get_articles(this._category.current.value, new Options({ flush: true }));
+                } else if (res['status'] === 3005) {
+                }
+            });
+    }
+
     delete(article_id: string) {
         this._http.delete('/middle/article?article_id=' + article_id).subscribe(
             res => {
